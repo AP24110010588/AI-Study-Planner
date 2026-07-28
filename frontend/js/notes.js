@@ -2,7 +2,7 @@
 // AI STUDY PLANNER
 // NOTES MODULE - PART 1
 // ==========================================
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://ai-study-planner-3nt2.onrender.com/api";
 
 const token = localStorage.getItem("token");
 
@@ -733,7 +733,7 @@ folderForm.addEventListener("submit", async (e) => {
     try {
 
         const response = await fetch(
-            "https://ai-study-planner-6q2f.onrender.com/api/folders",
+            "https://ai-study-planner-3nt2.onrender.com/api/folders",
             {
                 method: "POST",
                 headers: {
@@ -780,7 +780,7 @@ async function loadFolders() {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-        "https://ai-study-planner-6q2f.onrender.com/api/folders",
+        "https://ai-study-planner-3nt2.onrender.com/api/folders",
         {
             headers: {
                 Authorization: `Bearer ${token}`

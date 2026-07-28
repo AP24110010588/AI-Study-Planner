@@ -9,7 +9,7 @@ QUIZ MODULE
    API CONFIGURATION
 ========================================== */
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://ai-study-planner-3nt2.onrender.com/api";
 
 const token = localStorage.getItem("token");
 

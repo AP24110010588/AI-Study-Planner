@@ -3,7 +3,7 @@ AI STUDY PLANNER
 CALENDAR V2
 PART 3A-1
 ==================================================*/
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://ai-study-planner-3nt2.onrender.com/api";
 
 const token = localStorage.getItem("token");
 /*=====================================
@@ -436,7 +436,7 @@ const event_type = document.getElementById("eventType").value;
 
 try{
 
-const response = await fetch("https://ai-study-planner-6q2f.onrender.com/api/calendar",{
+const response = await fetch("https://ai-study-planner-3nt2.onrender.com/api/calendar",{
 
 method:"POST",
 
@@ -567,7 +567,7 @@ try{
 
 const response = await fetch(
 
-"https://ai-study-planner-6q2f.onrender.com/api/calendar",
+"https://ai-study-planner-3nt2.onrender.com/api/calendar",
 
 {
 

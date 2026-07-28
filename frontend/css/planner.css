@@ -1,0 +1,1546 @@
+/*==================================================
+AI STUDY PLANNER
+PLANNER
+PART 2
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F5F7FF;
+
+    display:flex;
+
+    min-height:100vh;
+
+    color:#1E293B;
+
+}
+
+/*=====================================
+SIDEBAR
+=====================================*/
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    padding:30px 20px;
+
+    color:white;
+
+}
+
+.logo{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+}
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:12px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.menu li a:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.menu li.active a{
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+MAIN
+=====================================*/
+
+.planner-main{
+
+    flex:1;
+
+    margin-left:280px;
+
+    padding:35px;
+
+}
+
+/*=====================================
+TOPBAR
+=====================================*/
+
+.planner-topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.planner-topbar h1{
+
+    font-size:38px;
+
+    margin-bottom:8px;
+
+}
+
+.planner-topbar p{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.planner-actions{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.primary-btn,
+.secondary-btn{
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px 22px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.primary-btn{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    box-shadow:0 12px 25px rgba(79,70,229,.25);
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.secondary-btn{
+
+    background:white;
+
+    color:#4F46E5;
+
+    border:2px solid #E2E8F0;
+
+}
+
+.secondary-btn:hover{
+
+    background:#EEF2FF;
+
+}
+
+/*=====================================
+TABS
+=====================================*/
+
+.planner-tabs{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+.tab{
+
+    border:none;
+
+    background:white;
+
+    padding:12px 24px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.05);
+
+}
+
+.tab.active{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+/*=====================================
+GRID
+=====================================*/
+
+.planner-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+}
+
+/*=====================================
+CARD
+=====================================*/
+
+.planner-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.planner-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 25px 45px rgba(79,70,229,.15);
+
+}
+
+/*=====================================
+CARD HEADER
+=====================================*/
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.card-header h3{
+
+    font-size:22px;
+
+}
+
+/*=====================================
+TASK
+=====================================*/
+
+.task{
+
+    display:grid;
+
+    grid-template-columns:25px 1fr auto;
+
+    gap:18px;
+
+    align-items:center;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    background:#F8FAFC;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+.task:hover{
+
+    background:#EEF2FF;
+
+    transform:translateX(8px);
+
+}
+
+.task input{
+
+    accent-color:#4F46E5;
+
+}
+
+.task strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+}
+
+.task p{
+
+    color:#64748B;
+
+    font-size:14px;
+
+}
+
+/*=====================================
+PRIORITY
+=====================================*/
+
+.priority{
+
+    padding:8px 14px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.high{
+
+    background:#EF4444;
+
+}
+
+.medium{
+
+    background:#F59E0B;
+
+}
+
+.low{
+
+    background:#10B981;
+
+}
+
+/*=====================================
+AI CARD
+=====================================*/
+
+.ai-card{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+}
+
+.ai-card p{
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.ask-ai-btn{
+
+    width:100%;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.ask-ai-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:1100px){
+
+    .planner-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:20px 10px;
+
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .menu li a{
+
+        justify-content:center;
+
+        font-size:0;
+
+    }
+
+    .menu li a i{
+
+        font-size:20px;
+
+    }
+
+    .planner-main{
+
+        margin-left:90px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .planner-topbar{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .planner-actions{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .primary-btn,
+    .secondary-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/*==================================================
+PART 3
+KANBAN BOARD
+==================================================*/
+
+.kanban-board{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.kanban-column{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.column-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+    padding-bottom:15px;
+
+    border-bottom:1px solid #E5E7EB;
+
+}
+
+.column-header span{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    color:white;
+
+    font-weight:700;
+
+}
+
+.todo span{
+
+    background:#EF4444;
+
+}
+
+.progress span{
+
+    background:#F59E0B;
+
+}
+
+.completed span{
+
+    background:#10B981;
+
+}
+
+.task-card{
+
+    background:#F8FAFC;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.task-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 30px rgba(79,70,229,.12);
+
+}
+
+.task-card h4{
+
+    margin-bottom:8px;
+
+}
+
+.task-card p{
+
+    color:#64748B;
+
+    margin-bottom:15px;
+
+}
+
+.task-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.completed-card{
+
+    opacity:.8;
+
+}
+
+@media(max-width:1100px){
+
+    .kanban-board{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*==================================================
+PART 4
+AI SMART PLANNER
+==================================================*/
+
+.ai-planner-section{
+
+    margin-top:35px;
+
+}
+
+.ai-smart-panel{
+
+    background:white;
+
+}
+
+.ai-description{
+
+    color:#64748B;
+
+    margin-bottom:25px;
+
+    line-height:1.8;
+
+}
+
+.ai-input-box{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.ai-input-box input{
+
+    flex:1;
+
+    height:55px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    padding:0 20px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.ai-input-box input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+.ai-input-box button{
+
+    padding:0 30px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.ai-suggestions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+}
+
+.suggestion{
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:30px;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.suggestion:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+.ai-output{
+
+    min-height:250px;
+
+    border:2px dashed #CBD5E1;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.ai-placeholder i{
+
+    font-size:60px;
+
+    color:#4F46E5;
+
+    margin-bottom:20px;
+
+}
+
+.ai-placeholder h3{
+
+    margin-bottom:15px;
+
+}
+
+.ai-placeholder p{
+
+    color:#64748B;
+
+    line-height:1.8;
+
+}
+
+@media(max-width:768px){
+
+    .ai-input-box{
+
+        flex-direction:column;
+
+    }
+
+    .ai-input-box button{
+
+        width:100%;
+
+        justify-content:center;
+
+        height:55px;
+
+    }
+
+}
+
+/*==================================================
+PART 5
+TASK MODAL
+==================================================*/
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.modal-overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.task-modal{
+
+    width:650px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 30px 60px rgba(0,0,0,.2);
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.close-modal{
+
+    border:none;
+
+    background:none;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+.form-group{
+
+    margin-bottom:20px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:12px;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    border-color:#4F46E5;
+
+}
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.save-task-btn{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+.save-task-btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+@media(max-width:768px){
+
+    .form-row{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*==================================================
+PART 6
+STUDY CALENDAR
+==================================================*/
+
+.calendar-section{
+
+    margin-top:35px;
+
+}
+
+.calendar-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.calendar-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.calendar-btn:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+.calendar-month{
+
+    font-weight:700;
+
+}
+
+.calendar{
+
+    margin-top:30px;
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:12px;
+
+}
+
+.day-name{
+
+    text-align:center;
+
+    font-weight:700;
+
+    color:#64748B;
+
+    padding-bottom:10px;
+
+}
+
+.day{
+
+    min-height:110px;
+
+    background:#F8FAFC;
+
+    border-radius:18px;
+
+    padding:12px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.day:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-4px);
+
+}
+
+.day span{
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.day small{
+
+    font-size:12px;
+
+    padding:6px;
+
+    border-radius:8px;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.today{
+
+    border:2px solid #4F46E5;
+
+}
+
+.today small{
+
+    background:#4F46E5;
+
+}
+
+.exam small{
+
+    background:#EF4444;
+
+}
+
+.study small{
+
+    background:#10B981;
+
+}
+
+.assignment small{
+
+    background:#F59E0B;
+
+}
+
+.empty{
+
+    visibility:hidden;
+
+}
+
+@media(max-width:900px){
+
+    .calendar{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .calendar{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+.day.selected{
+
+    outline:3px solid #7C3AED;
+
+    background:#EEF2FF;
+
+}
+
+/*==================================================
+PART 7
+DRAG & DROP
+==================================================*/
+
+.dragging{
+
+    opacity:.5;
+
+    transform:rotate(3deg);
+
+}
+
+.kanban-column{
+
+    min-height:500px;
+
+}
+
+/*=====================================
+COMPLETED TASK
+=====================================*/
+
+.completed-card{
+
+    opacity:.65;
+
+    text-decoration:line-through;
+
+    transition:.3s;
+
+}
+
+/*=====================================
+COLUMN HOVER
+=====================================*/
+
+.kanban-column:hover{
+
+    background:#F8FAFC;
+
+}
+
+/*=====================================
+TASK ANIMATION
+=====================================*/
+
+.task-card{
+
+    animation:fadeIn .4s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.generated-plan{
+
+    text-align:left;
+
+}
+
+.plan-item{
+
+    background:#EEF2FF;
+
+    padding:15px;
+
+    margin:12px 0;
+
+    border-radius:12px;
+
+    border-left:5px solid #4F46E5;
+
+}
+/* Flex adjustment for lists utility tags */
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task > div {
+    flex: 1;
+    margin-left: 10px;
+}
+.task-right .priority {
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-day {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #f3f4f6;
+    cursor: pointer;
+}
+
+.has-task {
+    background: #4f46e5;
+    color: white;
+    font-weight: bold;
+}
+
+.today{
+    border:3px solid #22c55e;
+    font-weight:bold;
+}
+
+.has-task{
+    background:#4f46e5;
+    color:white;
+}
+.deadline-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px;
+
+    margin-bottom:10px;
+
+    background:#ffffff;
+
+    border-radius:10px;
+
+    border-left:4px solid #ef4444;
+
+}
+
+.search-input{
+
+    padding:10px 15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    width:220px;
+
+    outline:none;
+
+}
+
+.search-input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+AI THINKING ANIMATION
+=====================================*/
+
+.ai-thinking{
+
+    min-height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.thinking-spinner{
+
+    width:50px;
+
+    height:50px;
+
+    border:5px solid #E5E7EB;
+
+    border-top:5px solid #4F46E5;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+
+    margin-bottom:20px;
+
+}
+
+.ai-thinking h3{
+
+    margin-bottom:12px;
+
+    color:#4F46E5;
+
+}
+
+.ai-thinking p{
+
+    color:#64748B;
+
+    font-size:16px;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        opacity:.4;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:.4;
+
+    }
+
+}

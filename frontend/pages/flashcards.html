@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Flashcards | AI Study Planner</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          href="../css/flashcards.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="planner.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Planner
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="calendar.html">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                Calendar
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="notes.html">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                Notes
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="flashcards.html">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                Flashcards
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="quiz.html">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                Quiz
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="flashcards-main">
+
+    <!-- Header -->
+
+    <header class="flashcards-header">
+
+        <div>
+
+            <h1>
+
+                🃏 AI Flashcards
+
+            </h1>
+
+            <p>
+
+                Learn faster using smart flashcards powered by AI.
+
+            </p>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="btn secondary">
+
+                <i class="fa-solid fa-folder-plus"></i>
+
+                New Deck
+
+            </button>
+
+            <button class="btn primary">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Flashcard
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Search -->
+
+    <section class="search-card">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+
+                type="text"
+
+                placeholder="Search flashcards...">
+
+        </div>
+
+    </section>
+
+    <!-- Subject Decks -->
+
+    <section class="deck-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📚 Subject Decks
+
+            </h2>
+
+        </div>
+
+        <div class="deck-grid">
+
+            <div class="deck">
+
+                📘 Java
+
+            </div>
+
+            <div class="deck">
+
+                🐍 Python
+
+            </div>
+
+            <div class="deck">
+
+                💾 DBMS
+
+            </div>
+
+            <div class="deck">
+
+                🗄 SQL
+
+            </div>
+
+            <div class="deck">
+
+                ⚙ Operating Systems
+
+            </div>
+
+            <div class="deck">
+
+                📊 Data Structures
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Recent Flashcards -->
+
+    <section class="recent-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                ⭐ Recent Flashcards
+
+            </h2>
+
+            <button>
+
+                View All
+
+            </button>
+
+        </div>
+
+        <div class="recent-grid">
+
+            <div class="flash-item">
+
+                <h3>
+
+                    Java OOP
+
+                </h3>
+
+                <p>
+
+                    Learn inheritance, abstraction,
+                    encapsulation and polymorphism.
+
+                </p>
+
+                <span>
+
+                    Updated Today
+
+                </span>
+
+            </div>
+
+            <div class="flash-item">
+
+                <h3>
+
+                    SQL Joins
+
+                </h3>
+
+                <p>
+
+                    INNER JOIN, LEFT JOIN,
+                    RIGHT JOIN and FULL JOIN.
+
+                </p>
+
+                <span>
+
+                    Yesterday
+
+                </span>
+
+            </div>
+
+            <div class="flash-item">
+
+                <h3>
+
+                    DBMS ACID
+
+                </h3>
+
+                <p>
+
+                    Atomicity,
+                    Consistency,
+                    Isolation,
+                    Durability.
+
+                </p>
+
+                <span>
+
+                    2 Days Ago
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- FLASHCARD VIEWER -->
+    <!-- ========================================= -->
+
+    <section class="viewer-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🃏 Flashcard Viewer
+
+            </h2>
+
+        </div>
+
+        <div class="flashcard-container">
+
+            <div class="flashcard" id="flashcard">
+
+                <div class="flashcard-front">
+
+                    <h3>
+
+                        What is Polymorphism?
+
+                    </h3>
+
+                    <p>
+
+                        Click to Flip
+
+                    </p>
+
+                </div>
+
+                <div class="flashcard-back">
+
+                    <h3>
+
+                        Answer
+
+                    </h3>
+
+                    <p>
+
+                        Polymorphism allows one interface
+                        to represent different implementations.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="flash-controls">
+
+            <button id="previousCard">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Previous
+
+            </button>
+
+            <button id="flipCard">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Flip
+
+            </button>
+
+            <button id="nextCard">
+
+                Next
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- AI FLASHCARD GENERATOR -->
+    <!-- ========================================= -->
+
+    <section class="ai-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🤖 AI Flashcard Generator
+
+            </h2>
+
+            <span class="premium">
+
+                Premium AI
+
+            </span>
+
+        </div>
+
+        <p>
+
+            Generate flashcards from your notes,
+            PDF files or any study topic.
+
+        </p>
+
+        <div class="ai-search">
+
+            <input
+
+                type="text"
+
+                id="aiPrompt"
+
+                placeholder="Example: Generate DBMS flashcards">
+
+            <button id="generateAI">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Generate
+
+            </button>
+
+        </div>
+
+        <div class="quick-prompts">
+
+            <button>
+
+                📚 DBMS
+
+            </button>
+
+            <button>
+
+                💻 Java
+
+            </button>
+
+            <button>
+
+                🐍 Python
+
+            </button>
+
+            <button>
+
+                🎯 Interview
+
+            </button>
+
+        </div>
+
+        <div id="aiResult">
+
+            <div class="empty-ai">
+
+                <i class="fa-solid fa-robot"></i>
+
+                <h3>
+
+                    AI Ready
+
+                </h3>
+
+                <p>
+
+                    AI generated flashcards
+                    will appear here.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- STATISTICS -->
+    <!-- ========================================= -->
+
+    <section class="stats-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📊 Flashcard Statistics
+
+            </h2>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+                <h3>
+
+                    248
+
+                </h3>
+
+                <p>
+
+                    Total Cards
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>
+
+                    162
+
+                </h3>
+
+                <p>
+
+                    Learned
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>
+
+                    58
+
+                </h3>
+
+                <p>
+
+                    Difficult
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3>
+
+                    94%
+
+                </h3>
+
+                <p>
+
+                    Progress
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- ADD FLASHCARD MODAL -->
+    <!-- ========================================= -->
+
+    <div class="modal-overlay" id="flashcardModal">
+
+        <div class="flashcard-modal">
+
+            <div class="modal-header">
+
+                <h2>
+
+                    ➕ Create Flashcard
+
+                </h2>
+
+                <button id="closeModal">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+            <form id="flashcardForm">
+
+    <input
+        type="text"
+        id="flashcardQuestion"
+        placeholder="Question"
+        required>
+
+    <textarea
+        id="flashcardAnswer"
+        rows="5"
+        placeholder="Answer"
+        required>
+
+    </textarea>
+
+    <select id="flashcardSubject">
+
+        <option value="Java">Java</option>
+
+        <option value="Python">Python</option>
+
+        <option value="DBMS">DBMS</option>
+
+        <option value="SQL">SQL</option>
+
+        <option value="Operating Systems">Operating Systems</option>
+
+        <option value="Data Structures">Data Structures</option>
+
+    </select>
+
+    <select id="flashcardDifficulty">
+
+        <option value="Easy">Easy</option>
+
+        <option value="Medium" selected>Medium</option>
+
+        <option value="Hard">Hard</option>
+
+    </select>
+
+    <button
+        class="save-btn"
+        type="submit">
+
+        Save Flashcard
+
+    </button>
+
+</form>
+
+        </div>
+
+    </div>
+
+    <!-- ========================================= -->
+<!-- NEW DECK MODAL -->
+<!-- ========================================= -->
+
+<div class="modal-overlay" id="deckModal">
+
+    <div class="flashcard-modal">
+
+        <div class="modal-header">
+
+            <h2>📁 Create New Deck</h2>
+
+            <button id="closeDeckModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="deckForm">
+
+            <input
+                type="text"
+                id="deckName"
+                placeholder="Enter Deck Name"
+                required>
+
+            <button
+                class="save-btn"
+                type="submit">
+
+                Create Deck
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</main>
+
+<script src="../js/flashcards.js"></script>
+
+</body>
+
+</html>

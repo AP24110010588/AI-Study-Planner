@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AI Study Planner</title>
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-graduation-cap"></i>
+
+        <h2>AI Study Planner</h2>
+
+    </div>
+
+    <nav>
+
+        <ul class="sidebar-menu">
+
+            <li>
+
+                <a
+                    href="dashboard.html"
+                    class="active">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="planner.html">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    Planner
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="calendar.html">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    Calendar
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="notes.html">
+
+                    <i class="fa-solid fa-note-sticky"></i>
+
+                    Notes
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="flashcards.html">
+
+                    <i class="fa-solid fa-layer-group"></i>
+
+                    Flashcards
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="quiz.html">
+
+                    <i class="fa-solid fa-circle-question"></i>
+
+                    Quiz
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="profile.html">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Profile
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="settings.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <button
+        id="logoutBtn"
+        class="logout-btn">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+    </button>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="main-content">
+
+<!-- ========================================= -->
+<!-- HEADER -->
+<!-- ========================================= -->
+
+<header class="top-header">
+
+    <div class="welcome-section">
+
+        <h1>
+
+            Welcome Back,
+
+            <span id="userName">
+
+                Student
+
+            </span>
+
+            👋
+
+        </h1>
+
+        <p id="currentDate">
+
+            Loading today's date...
+
+        </p>
+
+    </div>
+
+    <div class="header-actions">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Search anything...">
+
+        </div>
+
+        <button
+            id="notificationBtn"
+            class="icon-btn">
+
+            <i class="fa-regular fa-bell"></i>
+
+        </button>
+
+        <button
+            id="themeToggle"
+            class="icon-btn">
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+        <div class="profile-card">
+
+            <img
+                id="profileImage"
+                src="../assets/images/default-avatar.png"
+                alt="Profile">
+
+            <div>
+
+                <h4 id="profileName">
+
+                    Loading...
+
+                </h4>
+
+                <p id="profileEmail">
+
+                    Loading...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- HERO SECTION -->
+<!-- ========================================= -->
+
+<section class="dashboard-hero">
+
+    <div class="hero-left">
+
+        <span class="hero-badge">
+
+            🚀 AI Powered Learning
+
+        </span>
+
+        <h2>
+
+            Study Smarter,
+            Learn Faster,
+            Achieve More.
+
+        </h2>
+
+        <p>
+
+            Organize your planner, track your progress,
+            complete quizzes, review flashcards and let
+            AI guide your study journey every day.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="planner.html"
+                class="btn primary">
+
+                Continue Studying
+
+            </a>
+
+            <a
+                href="analytics.html"
+                class="btn secondary">
+
+                View Analytics
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <img
+            src="../assets/images/dashboard-hero.png"
+            alt="Dashboard Illustration">
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- DASHBOARD STATISTICS -->
+<!-- ========================================= -->
+
+<section class="stats-grid">
+
+    <!-- Subjects -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon purple">
+
+            <i class="fa-solid fa-book"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="totalSubjects">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Subjects
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Today's Tasks -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="todayTasks">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Today's Tasks
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Notes -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon orange">
+
+            <i class="fa-solid fa-note-sticky"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="totalNotes">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Notes
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Study Hours -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+
+            <i class="fa-solid fa-clock"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="statsStudyHours">
+
+                0 hrs
+
+            </h3>
+
+            <p>
+
+                Study Time
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Study Streak -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon red">
+
+            <i class="fa-solid fa-fire"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="statsStudyStreak">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Day Streak
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Flashcards -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon cyan">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="flashcardCount">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Flashcards
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Quiz Accuracy -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon yellow">
+
+            <i class="fa-solid fa-trophy"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="quizScore">
+
+                0%
+
+            </h3>
+
+            <p>
+
+                Quiz Accuracy
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Productivity -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon pink">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+        </div>
+
+        <div class="stat-content">
+
+            <h3 id="productivityScore">
+
+                0%
+
+            </h3>
+
+            <p>
+
+                Productivity
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- DASHBOARD GRID -->
+<!-- ========================================= -->
+
+<section class="dashboard-grid">
+
+    <!-- LEFT SIDE -->
+
+    <div class="dashboard-left">
+        <!-- ========================================= -->
+<!-- TODAY'S PLANNER -->
+<!-- ========================================= -->
+
+<section class="dashboard-card planner-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>📅 Today's Planner</h2>
+
+            <p>Tasks scheduled for today</p>
+
+        </div>
+
+        <a href="planner.html">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div
+        id="plannerList"
+        class="planner-list">
+
+        <!-- Loaded from dashboard.js -->
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- TODAY'S SCHEDULE -->
+<!-- ========================================= -->
+
+<section class="dashboard-card calendar-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>🗓 Today's Schedule</h2>
+
+            <p>Upcoming classes & events</p>
+
+        </div>
+
+        <a href="calendar.html">
+
+            Open Calendar
+
+        </a>
+
+    </div>
+
+    <div
+        id="todayEvents"
+        class="event-list">
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- RECENT NOTES -->
+<!-- ========================================= -->
+
+<section class="dashboard-card notes-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>📝 Recent Notes</h2>
+
+            <p>Continue your learning</p>
+
+        </div>
+
+        <a href="notes.html">
+
+            View Notes
+
+        </a>
+
+    </div>
+
+    <div
+        id="recentNotes"
+        class="notes-list">
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- SUBJECT PROGRESS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card subject-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>📚 Subject Progress</h2>
+
+            <p>Track every subject</p>
+
+        </div>
+
+        <button
+            class="btn primary"
+            id="addSubjectBtn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Add Subject
+
+        </button>
+
+    </div>
+
+    <div
+        id="subjectsContainer"
+        class="subjects-container">
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- TODAY'S GOAL -->
+<!-- ========================================= -->
+
+<section class="dashboard-card goal-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>🎯 Today's Goal</h2>
+
+            <p>Stay focused and finish today's target</p>
+
+        </div>
+
+    </div>
+
+    <div class="goal-box">
+
+        <div class="goal-circle">
+
+            <svg
+                width="150"
+                height="150">
+
+                <circle
+
+                    cx="75"
+                    cy="75"
+                    r="65"
+
+                    class="progress-bg">
+
+                </circle>
+
+                <circle
+
+                    id="goalProgressCircle"
+
+                    cx="75"
+                    cy="75"
+                    r="65"
+
+                    class="progress-fill"
+
+                    stroke-dasharray="408"
+
+                    stroke-dashoffset="408">
+
+                </circle>
+
+            </svg>
+
+            <div class="goal-text">
+
+                <h2 id="goalPercent">
+
+                    0%
+
+                </h2>
+
+                <span>
+
+                    Completed
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="goal-details">
+
+            <div>
+
+                <strong id="goalHours">
+
+                    0 hrs
+
+                </strong>
+
+                <p>
+
+                    Studied Today
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <strong id="goalRemaining">
+
+                    0 hrs
+
+                </strong>
+
+                <p>
+
+                    Remaining
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<!-- ========================================= -->
+<!-- RIGHT COLUMN -->
+<!-- ========================================= -->
+
+<div class="dashboard-right">
+
+    <!-- ========================================= -->
+<!-- AI STUDY ASSISTANT -->
+<!-- ========================================= -->
+
+<section class="dashboard-card ai-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>🤖 AI Study Assistant</h2>
+
+            <p>Your personalized AI learning companion</p>
+
+        </div>
+
+        <button
+            id="refreshAI"
+            class="btn primary">
+
+            Refresh
+
+        </button>
+
+    </div>
+
+    <div
+        id="aiRecommendations"
+        class="ai-recommendations">
+
+        <!-- Loaded from dashboard.js -->
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- WEEKLY ANALYTICS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card analytics-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>📊 Weekly Analytics</h2>
+
+            <p>Your study performance this week</p>
+
+        </div>
+
+        <a href="analytics.html">
+
+            View Report
+
+        </a>
+
+    </div>
+
+    <div class="chart-container">
+
+        <canvas id="weeklyChart"></canvas>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- ACHIEVEMENTS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card achievements-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>🏆 Achievements</h2>
+
+            <p>Your learning milestones</p>
+
+        </div>
+
+    </div>
+
+    <div class="achievement-grid">
+
+        <div class="achievement-card">
+
+            <i class="fa-solid fa-fire"></i>
+
+            <h3 id="achievementStudyStreak">
+
+                0
+
+            </h3>
+
+            <span>
+
+                Day Streak
+
+            </span>
+
+        </div>
+
+        <div class="achievement-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3 id="achievementStudyHours">
+
+                0 hrs
+
+            </h3>
+
+            <span>
+
+                Study Hours
+
+            </span>
+
+        </div>
+
+        <div class="achievement-card">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            <h3 id="completedSubjects">
+
+                0
+
+            </h3>
+
+            <span>
+
+                Subjects
+
+            </span>
+
+        </div>
+
+        <div class="achievement-card">
+
+            <i class="fa-solid fa-medal"></i>
+
+            <h3 id="quizAccuracy">
+
+                0%
+
+            </h3>
+
+            <span>
+
+                Quiz Accuracy
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- QUICK ACTIONS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card quick-actions-widget">
+
+    <div class="card-header">
+
+        <h2>⚡ Quick Actions</h2>
+
+    </div>
+
+    <div class="quick-actions-grid">
+
+        <a
+            href="planner.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <span>Planner</span>
+
+        </a>
+
+        <a
+            href="calendar.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            <span>Calendar</span>
+
+        </a>
+
+        <a
+            href="notes.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-note-sticky"></i>
+
+            <span>Notes</span>
+
+        </a>
+
+        <a
+            href="flashcards.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <span>Flashcards</span>
+
+        </a>
+
+        <a
+            href="quiz.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-circle-question"></i>
+
+            <span>Quiz</span>
+
+        </a>
+
+        <a
+            href="analytics.html"
+            class="quick-action">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>Analytics</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- RECENT ACTIVITY -->
+<!-- ========================================= -->
+
+<section class="dashboard-card activity-widget">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>📈 Recent Activity</h2>
+
+            <p>Your latest learning activity</p>
+
+        </div>
+
+    </div>
+
+    <div
+        id="recentActivity"
+        class="activity-list">
+
+        <!-- Loaded from dashboard.js -->
+
+    </div>
+
+</section>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- ADD SUBJECT MODAL -->
+<!-- ========================================= -->
+
+<div
+    class="modal"
+    id="subjectModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Add New Subject</h2>
+
+            <button id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="subjectForm">
+
+            <div class="form-group">
+
+                <label>
+
+                    Subject Name
+
+                </label>
+
+                <input
+                    type="text"
+                    id="subjectName"
+                    placeholder="Enter subject name"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Target Progress (%)
+
+                </label>
+
+                <input
+                    type="number"
+                    id="subjectProgress"
+                    min="0"
+                    max="100"
+                    value="0"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Theme Color
+
+                </label>
+
+                <input
+                    type="color"
+                    id="subjectColor"
+                    value="#6366F1">
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn primary">
+
+                Save Subject
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- NOTIFICATION PANEL -->
+<!-- ========================================= -->
+
+<div
+    class="notification-panel"
+    id="notificationPanel">
+
+    <div class="panel-header">
+
+        <h2>
+
+            Notifications
+
+        </h2>
+
+        <button id="closeNotifications">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <div
+        class="notification-list"
+        id="notificationList">
+
+        <div class="empty-state">
+
+            <i class="fa-regular fa-bell"></i>
+
+            <p>
+
+                No notifications available.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- FLOATING AI BUTTON -->
+<!-- ========================================= -->
+
+<button
+    id="aiFloatingBtn"
+    class="floating-ai-btn">
+
+    <i class="fa-solid fa-robot"></i>
+
+</button>
+
+<!-- ========================================= -->
+<!-- AI CHAT WINDOW -->
+<!-- ========================================= -->
+
+<div
+    class="ai-chat-window"
+    id="aiChatWindow">
+
+    <div class="ai-chat-header">
+
+        <div>
+
+            <h3>
+
+                🤖 AI Study Assistant
+
+            </h3>
+
+            <p>
+
+                Powered by Gemini AI
+
+            </p>
+
+        </div>
+
+        <button id="closeAIChat">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <div
+        id="aiChatMessages"
+        class="ai-chat-messages">
+
+        <div class="ai-message">
+
+            👋 Hello! I'm your AI Study Assistant.
+            Ask me anything about your studies.
+
+        </div>
+
+    </div>
+
+    <div class="ai-chat-input">
+
+        <input
+            id="aiInput"
+            type="text"
+            placeholder="Ask anything...">
+
+        <button id="sendAIMessage">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- LOADING OVERLAY -->
+<!-- ========================================= -->
+
+<div
+    class="loading-overlay"
+    id="loadingOverlay">
+
+    <div class="loader">
+
+        <div class="spinner"></div>
+
+        <p>
+
+            Loading Dashboard...
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- FOOTER -->
+<!-- ========================================= -->
+
+<footer class="dashboard-footer">
+
+    <p>
+
+        © 2026 AI Study Planner.
+        All Rights Reserved.
+
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<!-- ========================================= -->
+<!-- CHART.JS -->
+<!-- ========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- ========================================= -->
+<!-- DASHBOARD SCRIPT -->
+<!-- ========================================= -->
+
+<script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,528 @@
+/*==================================================
+AI STUDY PLANNER
+FORGOT PASSWORD MODULE
+PART 2A
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#4F46E5,#7C3AED);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    padding:20px;
+
+}
+
+/*=====================================
+CONTAINER
+=====================================*/
+
+.container{
+
+    width:100%;
+
+    max-width:520px;
+
+}
+
+/*=====================================
+CARD
+=====================================*/
+
+.forgot-card{
+
+    background:#FFFFFF;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+
+    animation:fadeUp .7s ease;
+
+}
+
+.logo{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#4F46E5;
+
+    margin-bottom:20px;
+
+}
+
+.forgot-card h1{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+    color:#1E293B;
+
+}
+
+.forgot-card p{
+
+    text-align:center;
+
+    color:#64748B;
+
+    line-height:1.6;
+
+    margin-bottom:30px;
+
+}
+
+/*=====================================
+INPUTS
+=====================================*/
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    padding:0 15px;
+
+    transition:.3s;
+
+}
+
+.input-box:focus-within{
+
+    border-color:#4F46E5;
+
+}
+
+.input-box i{
+
+    color:#64748B;
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    padding:15px;
+
+    font-size:15px;
+
+    background:transparent;
+
+}
+
+.toggle-password{
+
+    cursor:pointer;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.btn.primary{
+
+    background:linear-gradient(135deg,#4F46E5,#7C3AED);
+
+    color:#FFFFFF;
+
+}
+
+.btn.secondary{
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    border:2px solid #4F46E5;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+DIVIDER
+=====================================*/
+
+.divider{
+
+    text-align:center;
+
+    margin:30px 0;
+
+    color:#94A3B8;
+
+}
+
+.back-link{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*==================================================
+AI STUDY PLANNER
+FORGOT PASSWORD MODULE
+PART 2B
+==================================================*/
+
+/*=====================================
+OTP SECTION
+=====================================*/
+
+.otp-section{
+
+    margin-top:35px;
+
+    text-align:center;
+
+}
+
+.otp-section h2{
+
+    color:#1E293B;
+
+    margin-bottom:10px;
+
+}
+
+.otp-section p{
+
+    color:#64748B;
+
+    margin-bottom:20px;
+
+}
+
+.otp-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+.otp-box input{
+
+    width:55px;
+
+    height:60px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.otp-box input:focus{
+
+    border-color:#4F46E5;
+
+    box-shadow:0 0 0 4px rgba(79,70,229,.15);
+
+}
+
+/*=====================================
+OTP ACTIONS
+=====================================*/
+
+.otp-actions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+#timer{
+
+    color:#EF4444;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+PASSWORD STRENGTH
+=====================================*/
+
+.password-strength{
+
+    margin-bottom:25px;
+
+}
+
+.strength-bar{
+
+    width:100%;
+
+    height:8px;
+
+    background:#E2E8F0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-bottom:8px;
+
+}
+
+.strength-fill{
+
+    width:40%;
+
+    height:100%;
+
+    background:#F59E0B;
+
+    transition:.3s;
+
+}
+
+.password-strength small{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+BUTTON EFFECTS
+=====================================*/
+
+.btn.primary:hover{
+
+    box-shadow:0 12px 25px rgba(79,70,229,.30);
+
+}
+
+.btn.secondary:hover{
+
+    background:#4F46E5;
+
+    color:#FFFFFF;
+
+}
+
+/*=====================================
+ANIMATION
+=====================================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:768px){
+
+    .forgot-card{
+
+        padding:30px 20px;
+
+    }
+
+    .otp-actions{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .otp-box{
+
+        gap:8px;
+
+    }
+
+    .otp-box input{
+
+        width:45px;
+
+        height:50px;
+
+        font-size:18px;
+
+    }
+
+}
+
+/*=====================================
+SCROLLBAR
+=====================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF2FF;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F46E5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#3730A3;
+
+}
+

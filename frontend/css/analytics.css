@@ -1,0 +1,1105 @@
+/*==================================================
+AI STUDY PLANNER
+ANALYTICS MODULE
+PART 2A
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F5F7FF;
+
+    color:#1E293B;
+
+    display:flex;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/*=====================================
+SIDEBAR
+=====================================*/
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    padding:30px 20px;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+}
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:10px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.menu li a:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.menu li.active a{
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+MAIN
+=====================================*/
+
+.analytics-main{
+
+    margin-left:280px;
+
+    width:calc(100% - 280px);
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+
+}
+
+/*=====================================
+HEADER
+=====================================*/
+
+.analytics-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.analytics-header h1{
+
+    font-size:40px;
+
+    margin-bottom:8px;
+
+}
+
+.analytics-header p{
+
+    color:#64748B;
+
+    line-height:1.7;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.header-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 24px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.btn.primary{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+}
+
+.btn.secondary{
+
+    background:white;
+
+    color:#4F46E5;
+
+    border:2px solid #E2E8F0;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+SECTION CARDS
+=====================================*/
+
+.overview-card,
+.chart-card,
+.subject-card,
+.streak-card,
+.goal-card,
+.ai-card,
+.achievement-card,
+.activity-card{
+
+    width:100%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.overview-card:hover,
+.chart-card:hover,
+.subject-card:hover,
+.streak-card:hover,
+.goal-card:hover,
+.ai-card:hover,
+.achievement-card:hover,
+.activity-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*=====================================
+SECTION TITLE
+=====================================*/
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:26px;
+
+}
+
+/*=====================================
+OVERVIEW GRID
+=====================================*/
+
+.overview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.overview-item{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.overview-item:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-5px);
+
+}
+
+.overview-item h3{
+
+    font-size:34px;
+
+    color:#4F46E5;
+
+    margin-bottom:10px;
+
+}
+
+.overview-item p{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+CHART
+=====================================*/
+
+.chart-placeholder{
+
+    height:320px;
+
+    border:2px dashed #CBD5E1;
+
+    border-radius:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:26px;
+
+    color:#4F46E5;
+
+    gap:15px;
+
+}
+
+.chart-placeholder p{
+
+    font-size:15px;
+
+    color:#64748B;
+
+}
+
+/*=====================================
+SUBJECT GRID
+=====================================*/
+
+.subject-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.subject-item{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    transition:.3s;
+
+}
+
+.subject-item:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-5px);
+
+}
+
+.subject-item span{
+
+    font-weight:700;
+
+    color:#4F46E5;
+
+    font-size:20px;
+
+}
+
+/*==================================================
+AI STUDY PLANNER
+ANALYTICS MODULE
+PART 2B
+==================================================*/
+
+/*=====================================
+STUDY STREAK
+=====================================*/
+
+.streak-content{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.streak-circle{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 15px 30px rgba(79,70,229,.30);
+
+}
+
+.streak-circle h2{
+
+    font-size:50px;
+
+}
+
+.streak-circle p{
+
+    font-size:18px;
+
+}
+
+.streak-info{
+
+    flex:1;
+
+}
+
+.streak-info h3{
+
+    margin-bottom:15px;
+
+    font-size:28px;
+
+}
+
+.streak-info p{
+
+    color:#64748B;
+
+    line-height:1.8;
+
+}
+
+/*=====================================
+GOAL PROGRESS
+=====================================*/
+
+.goal-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.goal span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:14px;
+
+    background:#E2E8F0;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    border-radius:20px;
+
+}
+
+/*=====================================
+AI INSIGHTS
+=====================================*/
+
+.premium{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.insight-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.insight{
+
+    background:#EEF2FF;
+
+    padding:18px 22px;
+
+    border-radius:15px;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.insight:hover{
+
+    transform:translateX(8px);
+
+}
+
+/*=====================================
+ACHIEVEMENTS
+=====================================*/
+
+.achievement-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.achievement{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    font-size:42px;
+
+    transition:.3s;
+
+}
+
+.achievement:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-6px);
+
+}
+
+.achievement h4{
+
+    margin-top:15px;
+
+    font-size:17px;
+
+    color:#1E293B;
+
+}
+
+/*=====================================
+RECENT ACTIVITY
+=====================================*/
+
+.activity-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.activity{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#F8FAFC;
+
+    padding:18px 22px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.activity:hover{
+
+    background:#EEF2FF;
+
+    transform:translateX(6px);
+
+}
+
+.activity span{
+
+    color:#64748B;
+
+    font-size:14px;
+
+}
+
+/*=====================================
+ANIMATIONS
+=====================================*/
+
+.overview-card,
+.chart-card,
+.subject-card,
+.streak-card,
+.goal-card,
+.ai-card,
+.achievement-card,
+.activity-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:20px 10px;
+
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .menu li a{
+
+        justify-content:center;
+
+        font-size:0;
+
+    }
+
+    .menu li a i{
+
+        font-size:20px;
+
+    }
+
+    .analytics-main{
+
+        margin-left:90px;
+
+        width:calc(100% - 90px);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .analytics-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .header-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .streak-content{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .overview-grid,
+    .subject-grid,
+    .achievement-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*=====================================
+SCROLLBAR
+=====================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F46E5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF2FF;
+
+}
+
+/*=====================================
+CHART.JS CONTAINER
+=====================================*/
+
+.chart-container{
+
+    width:100%;
+
+    height:380px;
+
+    position:relative;
+
+}
+
+.chart-container canvas{
+
+    width:100%!important;
+
+    height:100%!important;
+
+}
+
+/*=====================================
+SUBJECT PERFORMANCE
+=====================================*/
+
+.subject-performance-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+
+    gap:20px;
+
+}
+
+.subject-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+
+}
+
+.subject-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:10px;
+
+    background:#E5E7EB;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #4F46E5,
+        #8B5CF6
+    );
+
+    border-radius:50px;
+
+    transition:width 1.2s ease;
+
+}
+
+/*=====================================
+AI ANALYSIS MODAL
+=====================================*/
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.modal.show{
+
+    display:flex;
+
+}
+
+.ai-modal{
+
+    width:650px;
+
+    max-width:90%;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    animation:fadeIn .3s ease;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.modal-header button{
+
+    border:none;
+
+    background:none;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+.ai-analysis-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.ai-card{
+
+    background:#F5F7FF;
+
+    border-left:5px solid #5B4DFF;
+
+    padding:18px;
+
+    border-radius:12px;
+
+}
+
+.loading{
+
+    text-align:center;
+
+    padding:40px;
+
+    font-size:18px;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

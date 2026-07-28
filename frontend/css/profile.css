@@ -1,0 +1,847 @@
+/*==================================================
+AI STUDY PLANNER
+PROFILE MODULE
+PART 2A
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F5F7FF;
+
+    color:#1E293B;
+
+    display:flex;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/*=====================================
+SIDEBAR
+=====================================*/
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    padding:30px 20px;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+}
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:10px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.menu li a:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.menu li.active a{
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+MAIN
+=====================================*/
+
+.profile-main{
+
+    margin-left:280px;
+
+    width:calc(100% - 280px);
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+
+}
+
+/*=====================================
+HEADER
+=====================================*/
+
+.profile-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.profile-header h1{
+
+    font-size:40px;
+
+    margin-bottom:8px;
+
+}
+
+.profile-header p{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.header-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 24px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.btn.primary{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+}
+
+.btn.secondary{
+
+    background:white;
+
+    color:#4F46E5;
+
+    border:2px solid #E2E8F0;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+SECTION CARDS
+=====================================*/
+
+.profile-card,
+.academic-card,
+.goal-card,
+.stats-card,
+.achievement-card,
+.security-card,
+.preference-card{
+
+    width:100%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.profile-card:hover,
+.academic-card:hover,
+.goal-card:hover,
+.stats-card:hover,
+.achievement-card:hover,
+.security-card:hover,
+.preference-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*=====================================
+SECTION TITLE
+=====================================*/
+
+.section-title{
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:26px;
+
+}
+
+/*=====================================
+PROFILE CARD
+=====================================*/
+
+.profile-card{
+
+    display:grid;
+
+    grid-template-columns:320px 1fr;
+
+    gap:35px;
+
+}
+
+.profile-left{
+
+    text-align:center;
+
+}
+
+.profile-image{
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:6px solid #4F46E5;
+
+    margin-bottom:20px;
+
+}
+
+.profile-left h2{
+
+    margin-bottom:10px;
+
+}
+
+.profile-left p{
+
+    color:#64748B;
+
+    margin-bottom:15px;
+
+}
+
+.profile-left span{
+
+    display:inline-block;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+PROFILE FORM
+=====================================*/
+
+.profile-form{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.profile-form input{
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+        border-radius:15px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.profile-form input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+ACADEMIC GRID
+=====================================*/
+
+.academic-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.academic-grid input{
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.academic-grid input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+GOALS
+=====================================*/
+
+.goal-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.goal-box{
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.goal-box:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+    transform:translateY(-6px);
+
+}
+
+/*=====================================
+STATISTICS
+=====================================*/
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.stat{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.stat:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-5px);
+
+}
+
+.stat h3{
+
+    font-size:34px;
+
+    color:#4F46E5;
+
+    margin-bottom:10px;
+
+}
+
+.stat p{
+
+    color:#64748B;
+
+}
+
+/*==================================================
+AI STUDY PLANNER
+PROFILE MODULE
+PART 2B
+==================================================*/
+
+/*=====================================
+ACHIEVEMENTS
+=====================================*/
+
+.achievement-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.achievement{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    font-size:42px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.achievement:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-6px);
+
+}
+
+.achievement h4{
+
+    margin-top:15px;
+
+    font-size:17px;
+
+    color:#1E293B;
+
+}
+
+/*=====================================
+SECURITY
+=====================================*/
+
+.security-card .profile-form{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.security-card input{
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.security-card input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+PREFERENCES
+=====================================*/
+
+.preference-card .profile-form{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.preference-card select{
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    background:white;
+
+    font-family:inherit;
+
+    transition:.3s;
+
+}
+
+.preference-card select:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+SOCIAL LINKS
+=====================================*/
+
+.preference-card input{
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.preference-card input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+ANIMATIONS
+=====================================*/
+
+.profile-card,
+.academic-card,
+.goal-card,
+.stats-card,
+.achievement-card,
+.security-card,
+.preference-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:20px 10px;
+
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .menu li a{
+
+        justify-content:center;
+
+        font-size:0;
+
+    }
+
+    .menu li a i{
+
+        font-size:20px;
+
+    }
+
+    .profile-main{
+
+        margin-left:90px;
+
+        width:calc(100% - 90px);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .profile-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .header-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .profile-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .profile-form,
+    .academic-grid,
+    .security-card .profile-form,
+    .preference-card .profile-form{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .goal-grid,
+    .stats-grid,
+    .achievement-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*=====================================
+SCROLLBAR
+=====================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF2FF;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F46E5;
+
+    border-radius:20px;
+
+}

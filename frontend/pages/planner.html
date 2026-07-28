@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Planner | AI Study Planner</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Planner CSS -->
+
+    <link rel="stylesheet"
+          href="../css/planner.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="planner.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                Planner
+            </a>
+        </li>
+
+        <li>
+            <a href="calendar.html">
+                <i class="fa-solid fa-calendar"></i>
+                Calendar
+            </a>
+        </li>
+
+        <li>
+            <a href="notes.html">
+                <i class="fa-solid fa-note-sticky"></i>
+                Notes
+            </a>
+        </li>
+
+        <li>
+            <a href="flashcards.html">
+                <i class="fa-solid fa-layer-group"></i>
+                Flashcards
+            </a>
+        </li>
+
+        <li>
+            <a href="quiz.html">
+                <i class="fa-solid fa-file-circle-question"></i>
+                Quiz
+            </a>
+        </li>
+
+        <li>
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="planner-main">
+
+    <!-- ========================================= -->
+    <!-- TOP BAR -->
+    <!-- ========================================= -->
+
+    <header class="planner-topbar">
+
+        <div class="planner-title">
+
+            <h1>
+
+                📅 Study Planner
+
+            </h1>
+
+            <p>
+
+                Plan smarter, stay organized, and achieve your goals.
+
+            </p>
+
+        </div>
+
+        <div class="planner-actions">
+
+          <button
+    class="secondary-btn"
+    id="addPlannerBtn">
+
+    <i class="fa-solid fa-plus"></i>
+
+    Add Task
+
+</button>
+
+          
+        </div>
+
+    </header>
+
+    <!-- ========================================= -->
+    <!-- PLANNER STATISTICS -->
+    <!-- ========================================= -->
+
+    <section class="planner-stats">
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-list-check"></i>
+
+            <h2 id="totalTasks">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Total Tasks
+
+            </p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2 id="completedTasks">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Completed
+
+            </p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+            <h2 id="pendingTasks">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Pending
+
+            </p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <i class="fa-solid fa-fire"></i>
+
+            <h2 id="plannerStreak">
+
+                0
+
+            </h2>
+
+            <p>
+
+                Study Streak
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- TODAY'S TASKS -->
+    <!-- ========================================= -->
+     <section class="planner-content">
+
+    <!-- ============================= -->
+    <!-- TODAY'S TASKS -->
+    <!-- ============================= -->
+
+    <div class="planner-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>
+
+                    📋 Today's Tasks
+
+                </h2>
+
+                <p>
+
+                    Your study schedule for today
+
+                </p>
+
+            </div>
+
+            <button
+                class="view-all-btn"
+                id="refreshTasks">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh 
+                <input
+    type="text"
+    id="taskSearch"
+    placeholder="Search tasks..."
+    class="search-input">
+
+            </button>
+
+        </div>
+
+        <!-- Dynamic Tasks -->
+
+        <div
+            class="planner-list"
+            id="plannerList">
+
+            <!-- Planner Tasks will load here -->
+
+        </div>
+
+    </div>
+
+    <!-- ============================= -->
+    <!-- DAILY PROGRESS -->
+    <!-- ============================= -->
+
+    <div class="planner-card">
+
+        <div class="card-header"
+
+            <h2>
+
+                📈 Today's Progress
+
+            </h2>
+
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-circle">
+
+                <span id="progressPercentage">
+
+                    0%
+
+                </span>
+
+            </div>
+
+            <div class="progress-info">
+
+                <h3>
+
+                    Stay Focused 🚀
+
+                </h3>
+
+                <p>
+
+                    Complete your pending tasks to improve today's productivity.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="planner-progress">
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                    style="width:0%;">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- UPCOMING TASKS -->
+<!-- ============================= -->
+
+<section class="planner-card">
+
+    <div class="card-header">
+
+        <h2>
+
+            ⏳ Upcoming Tasks
+
+        </h2>
+
+    </div>
+
+    <div
+        class="upcoming-list"
+        id="upcomingTasks">
+
+        <!-- Upcoming Tasks Loaded Here -->
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- KANBAN BOARD -->
+<!-- ========================================= -->
+
+<section class="kanban-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            🚀 Study Workflow
+
+        </h2>
+
+        <p>
+
+            Drag and organize your study tasks.
+
+        </p>
+
+    </div>
+
+    <div class="kanban-board">
+
+        <!-- TO DO -->
+
+        <div class="kanban-column">
+
+            <div class="column-header todo">
+
+                <h3>
+
+                    📌 To Do
+
+                </h3>
+
+                <span id="todoCount">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div
+                class="task-container"
+                id="todoContainer">
+
+                <!-- Dynamic Tasks -->
+
+            </div>
+
+        </div>
+
+        <!-- IN PROGRESS -->
+
+        <div class="kanban-column">
+
+            <div class="column-header progress">
+
+                <h3>
+
+                    🚀 In Progress
+
+                </h3>
+
+                <span id="progressCount">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div
+                class="task-container"
+                id="progressContainer">
+
+                <!-- Dynamic Tasks -->
+
+            </div>
+
+        </div>
+
+        <!-- COMPLETED -->
+
+        <div class="kanban-column">
+
+            <div class="column-header completed">
+
+                <h3>
+
+                    ✅ Completed
+
+                </h3>
+
+                <span id="completedCount">
+
+                    0
+
+                </span>
+
+            </div>
+
+            <div
+                class="task-container"
+                id="completedContainer">
+
+                <!-- Dynamic Tasks -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- AI SMART PLANNER -->
+<!-- ========================================= -->
+
+<section class="planner-card ai-smart-panel">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>
+
+                🤖 AI Smart Planner
+
+            </h2>
+
+            <p>
+
+                Gemini AI Powered Study Assistant
+
+            </p>
+
+        </div>
+
+        <span class="ai-badge">
+
+            AI
+
+        </span>
+
+    </div>
+
+    <div class="ai-input-box">
+
+        <input
+
+            type="text"
+
+            id="aiPrompt"
+
+            placeholder="Example: Create a 7-day DBMS study schedule">
+
+        <button
+
+            id="generatePlan"
+
+            class="primary-btn">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Generate
+
+        </button>
+
+    </div>
+
+    <div class="quick-prompts">
+
+        <button class="suggestion">
+
+            📚 Exam Preparation
+
+        </button>
+
+        <button class="suggestion">
+
+            ⚡ Revision Plan
+
+        </button>
+
+        <button class="suggestion">
+
+            📝 Daily Schedule
+
+        </button>
+
+        <button class="suggestion">
+
+            💼 Placement Preparation
+
+        </button>
+
+    </div>
+
+    <div
+        class="ai-output"
+        id="aiOutput">
+
+        <div class="ai-placeholder">
+
+            <i class="fa-solid fa-robot"></i>
+
+            <h3>
+
+                AI Planner Ready
+
+            </h3>
+
+            <p>
+
+                Your personalized AI study schedule will appear here.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- CALENDAR + PRODUCTIVITY -->
+<!-- ========================================= -->
+
+<section class="planner-grid">
+
+    <!-- ========================= -->
+    <!-- STUDY CALENDAR -->
+    <!-- ========================= -->
+
+    <div class="planner-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                📅 Study Calendar
+
+            </h2>
+
+            <div class="calendar-controls">
+
+                <button id="prevMonth">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+                <span id="calendarMonth">
+
+                    July 2026
+
+                </span>
+
+                <button id="nextMonth">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            class="calendar"
+            id="plannerCalendar">
+
+            <!-- Calendar Generated by JS -->
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- UPCOMING DEADLINES -->
+    <!-- ========================= -->
+
+    <div class="planner-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                ⏰ Upcoming Deadlines
+
+            </h2>
+
+        </div>
+
+        <div
+            class="deadline-list"
+            id="deadlineList">
+
+            <!-- Dynamic Deadlines -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- WEEKLY GOALS -->
+<!-- ========================================= -->
+
+<section class="planner-card">
+
+    <div class="card-header">
+
+        <h2>
+
+            🎯 Weekly Goals
+
+        </h2>
+
+    </div>
+
+    <div
+        class="weekly-goals"
+        id="weeklyGoals">
+
+        <div class="goal-item">
+
+            <div>
+
+                <h4>
+
+                    Complete DBMS Revision
+
+                </h4>
+
+                <p>
+
+                    Finish all DBMS modules before Friday.
+
+                </p>
+
+            </div>
+
+            <span class="goal-status">
+
+                65%
+
+            </span>
+
+        </div>
+
+        <div class="goal-item">
+
+            <div>
+
+                <h4>
+
+                    Solve 50 DSA Problems
+
+                </h4>
+
+                <p>
+
+                    Practice arrays, trees and graphs.
+
+                </p>
+
+            </div>
+
+            <span class="goal-status">
+
+                40%
+
+            </span>
+
+        </div>
+
+        <div class="goal-item">
+
+            <div>
+
+                <h4>
+
+                    Python Project
+
+                </h4>
+
+                <p>
+
+                    Complete backend integration.
+
+                </p>
+
+            </div>
+
+            <span class="goal-status">
+
+                82%
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- PRODUCTIVITY ANALYTICS -->
+<!-- ========================================= -->
+
+<section class="planner-card">
+
+    <div class="card-header">
+
+        <h2>
+
+            📊 Productivity Overview
+
+        </h2>
+
+    </div>
+
+    <div class="analytics-grid">
+
+        <div class="analytics-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3 id="studyHours">
+
+                0 hrs
+
+            </h3>
+
+            <p>
+
+                Study Hours
+
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <i class="fa-solid fa-book"></i>
+
+            <h3 id="subjectsCovered">
+
+                0
+
+            </h3>
+
+            <p>
+
+                Subjects Covered
+
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <i class="fa-solid fa-fire"></i>
+
+            <h3 id="studyStreak">
+
+                0 Days
+
+            </h3>
+
+            <p>
+
+                Study Streak
+
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h3 id="completionRate">
+
+                0%
+
+            </h3>
+
+            <p>
+
+                Completion Rate
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- ADD TASK MODAL -->
+<!-- ========================================= -->
+
+<!-- Find the Add Task Modal inside your HTML file and update it to this structure: -->
+<div class="modal-overlay" id="plannerModal">
+    <!-- Changed class from planner-modal to task-modal to pair up with your style.css mapping rules -->
+    <div class="task-modal">
+
+        <div class="modal-header">
+            <h2>➕ Add Study Task</h2>
+            <button type="button" class="close-modal" id="closePlannerModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="plannerForm">
+            <div class="form-group">
+                <label>Task Title</label>
+                <input type="text" id="plannerTitle" placeholder="Example: Complete DBMS Assignment" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="plannerDescription" rows="4" placeholder="Enter task description..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Study Date</label>
+                    <input type="date" id="plannerDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="plannerPriority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <input type="time" id="plannerStartTime" required>
+                </div>
+
+                <div class="form-group">
+                    <label>End Time</label>
+                    <input type="time" id="plannerEndTime" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status</label>
+                <select id="plannerStatus">
+                    <option value="todo">To Do</option>
+                    <option value="progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <!-- Match layout save buttons standard colors -->
+            <button type="submit" class="save-task-btn">
+                <i class="fa-solid fa-floppy-disk"></i> Save Task
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- ========================================= -->
+<!-- AI LOADING -->
+<!-- ========================================= -->
+
+<div
+    class="ai-loader"
+    id="aiLoader">
+
+    <div class="loader-circle"></div>
+
+    <p>
+
+        🤖 AI is preparing your personalized study plan...
+
+    </p>
+
+</div>
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script src="../js/planner.js"></script>
+
+</body>
+
+</html>

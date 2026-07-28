@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | AI Study Planner</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="../css/profile.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="planner.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Planner
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="calendar.html">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                Calendar
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="notes.html">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                Notes
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="flashcards.html">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                Flashcards
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="quiz.html">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                Quiz
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="profile-main">
+
+    <!-- Header -->
+
+    <header class="profile-header">
+
+        <div>
+
+            <h1>
+
+                👤 My Profile
+
+            </h1>
+
+            <p>
+
+                Manage your personal information, study preferences and achievements.
+
+            </p>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="btn secondary">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Change Photo
+
+            </button>
+
+            <button class="btn primary">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Profile
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Profile Card -->
+
+    <section class="profile-card">
+
+        <div class="profile-left">
+
+          <img
+    id="profilePhoto"
+    class="profile-image"
+    src="https://placehold.co/200x200"
+    alt="Profile Photo">
+
+            <h2 id="profileName">
+    Adithya
+</h2>
+
+            <p id="profileTitle">
+    Computer Science Student
+</p>
+
+            <span>
+
+                ⭐ Premium Member
+
+            </span>
+
+        </div>
+
+        <div class="profile-right">
+
+            <div class="section-title">
+
+                <h2>
+
+                    📝 Personal Information
+
+                </h2>
+
+            </div>
+
+            <div class="profile-form">
+
+                <input type="text" id="fullName" placeholder="Full Name">
+
+                <input type="email" id="email" placeholder="Email Address">
+
+               <input type="text" id="phone" placeholder="Phone Number">
+
+<input type="text" id="location" placeholder="Location">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Academic Information -->
+
+    <section class="academic-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🎓 Academic Information
+
+            </h2>
+
+        </div>
+
+        <div class="academic-grid">
+
+            <input
+                type="text"
+                id="university"
+                placeholder="University">
+
+            <input
+                type="text"
+                id="degree"
+                placeholder="Degree">
+
+            <input
+                type="text"
+                id="branch"
+                placeholder="Branch">
+
+            <input
+                type="text"
+                id="currentYear"
+                placeholder="Current Year">
+
+            <input
+                type="text"
+                id="semester"
+                placeholder="Semester">
+
+            <input
+                type="text"
+                id="cgpa"
+                placeholder="CGPA">
+
+        </div>
+
+    </section>
+
+    <!-- Study Goals -->
+
+    <section class="goal-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🎯 Study Goals
+
+            </h2>
+
+        </div>
+
+        <div class="goal-grid">
+
+            <div class="goal-box">
+
+                📚 Complete Java Course
+
+            </div>
+
+            <div class="goal-box">
+
+                🧠 Solve 100 Quizzes
+
+            </div>
+
+            <div class="goal-box">
+
+                🃏 Review 500 Flashcards
+
+            </div>
+
+            <div class="goal-box">
+
+                🔥 Maintain 30-Day Streak
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- PERSONAL STATISTICS -->
+    <!-- ========================================= -->
+
+    <section class="stats-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📊 Personal Statistics
+
+            </h2>
+
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+               <h3 id="studyHours">
+    0
+</h3>
+
+                <p>
+
+                    Study Hours
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3 id="dayStreak">
+    0
+</h3>
+
+                <p>
+
+                    Day Streak
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <h3 id="quizAccuracy">
+    0%
+</h3>
+
+                <p>
+
+                    Quiz Accuracy
+
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+               <h3 id="flashcardsReviewed">
+    0
+</h3>
+
+                <p>
+
+                    Flashcards Reviewed
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+  
+
+    <!-- ========================================= -->
+    <!-- SECURITY -->
+    <!-- ========================================= -->
+
+    <section class="security-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🔒 Change Password
+
+            </h2>
+
+        </div>
+
+        <div class="profile-form">
+<input id="currentPassword" type="password" placeholder="Current Password">
+
+<input id="newPassword" type="password" placeholder="New Password">
+
+<input id="confirmPassword" type="password" placeholder="Confirm Password">
+
+            <button class="btn primary">
+
+                <i class="fa-solid fa-key"></i>
+
+                Update Password
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- PREFERENCES -->
+    <!-- ========================================= -->
+
+    <section class="preference-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                ⚙ Preferences
+
+            </h2>
+
+        </div>
+
+        <div class="profile-form">
+
+            <select>
+
+                <option>Light Theme</option>
+
+                <option>Dark Theme</option>
+
+            </select>
+
+            <select>
+
+                <option>Email Notifications</option>
+
+                <option>Disable Notifications</option>
+
+            </select>
+
+            <select>
+
+                <option>English</option>
+
+                <option>Telugu</option>
+
+                <option>Hindi</option>
+
+            </select>
+
+            <select>
+
+                <option>12 Hour Time</option>
+
+                <option>24 Hour Time</option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- SOCIAL LINKS -->
+    <!-- ========================================= -->
+
+    <section class="preference-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🌐 Social Links
+
+            </h2>
+
+        </div>
+
+        <div class="profile-form">
+
+           <input
+    id="linkedin"
+    type="url"
+    placeholder="LinkedIn Profile">
+
+<input
+    id="github"
+    type="url"
+    placeholder="GitHub Profile">
+
+<input
+    id="portfolio"
+    type="url"
+    placeholder="Portfolio Website">
+
+<input
+    id="twitter"
+    type="url"
+    placeholder="Twitter / X Profile">
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="../js/profile.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+/* =========================================
+   GLOBAL THEME VARIABLES
+========================================= */
+
+:root {
+
+    --bg-color: #F5F7FF;
+    --card-color: #FFFFFF;
+    --text-color: #1E293B;
+    --text-secondary: #64748B;
+
+    --border-color: #E2E8F0;
+
+    --primary: #4F46E5;
+    --primary-dark: #3730A3;
+
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode{
+
+    --bg-color:#F5F7FF;
+
+    --surface-color:#FFFFFF;
+
+    --text-color:#1F2A44;
+
+    --text-light:#6B7280;
+
+    --border-color:#E5E7EB;
+
+}
+
+/* =========================================
+   GLOBAL BODY
+========================================= */
+
+body {
+
+    background: var(--bg-color);
+    color: var(--text-color);
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+
+}

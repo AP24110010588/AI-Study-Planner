@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Study Planner | Quiz</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Quiz CSS -->
+
+    <link rel="stylesheet"
+          href="../css/quiz.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="planner.html">
+                <i class="fa-solid fa-calendar-days"></i>
+                Planner
+            </a>
+        </li>
+
+        <li>
+            <a href="calendar.html">
+                <i class="fa-solid fa-calendar"></i>
+                Calendar
+            </a>
+        </li>
+
+        <li>
+            <a href="notes.html">
+                <i class="fa-solid fa-note-sticky"></i>
+                Notes
+            </a>
+        </li>
+
+        <li>
+            <a href="flashcards.html">
+                <i class="fa-solid fa-layer-group"></i>
+                Flashcards
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="quiz.html">
+                <i class="fa-solid fa-file-circle-question"></i>
+                Quiz
+            </a>
+        </li>
+
+        <li>
+            <a href="analytics.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Analytics
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i>
+                Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="quiz-main">
+
+    <!-- ========================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================================= -->
+
+    <header class="quiz-header">
+
+        <div>
+
+            <h1>
+
+                🧠 AI Quiz Center
+
+            </h1>
+
+            <p>
+
+                Generate AI-powered quizzes on any topic, test your knowledge, and track your progress.
+
+            </p>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="btn secondary">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </button>
+
+            
+
+        </div>
+
+    </header>
+
+        <!-- ========================================= -->
+    <!-- AI QUIZ GENERATOR -->
+    <!-- ========================================= -->
+
+    <section class="quiz-generator-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                🤖 AI Quiz Generator
+
+            </h2>
+
+            <p>
+
+                Generate personalized quizzes on any topic using Gemini AI.
+
+            </p>
+
+        </div>
+
+        <div class="quiz-form">
+
+            <!-- Topic -->
+
+            <div class="form-group">
+
+                <label for="quizTopic">
+
+                    Topic
+
+                </label>
+
+                <input
+                    type="text"
+                    id="quizTopic"
+                    placeholder="Example: Constructors, DBMS, React Hooks, Python Functions">
+
+            </div>
+
+            <!-- Difficulty -->
+
+            <div class="form-group">
+
+                <label for="quizDifficulty">
+
+                    Difficulty
+
+                </label>
+
+                <select id="quizDifficulty">
+
+                    <option value="Easy">
+
+                        🟢 Easy
+
+                    </option>
+
+                    <option value="Medium">
+
+                        🟡 Medium
+
+                    </option>
+
+                    <option value="Hard">
+
+                        🔴 Hard
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Number of Questions -->
+
+            <div class="form-group">
+
+                <label for="quizCount">
+
+                    Number of Questions
+
+                </label>
+
+                <select id="quizCount">
+
+                    <option value="5">
+
+                        5 Questions
+
+                    </option>
+
+                    <option value="10" selected>
+
+                        10 Questions
+
+                    </option>
+
+                    <option value="15">
+
+                        15 Questions
+
+                    </option>
+
+                    <option value="20">
+
+                        20 Questions
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Generate Button -->
+
+            <button
+                id="generateQuizBtn"
+                class="generate-btn">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                Generate AI Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- AI LOADING -->
+    <!-- ========================================= -->
+
+    <section
+        id="quizLoading"
+        class="quiz-loading hidden">
+
+        <div class="loader"></div>
+
+        <h2>
+
+            Generating Your Quiz...
+
+        </h2>
+
+        <p>
+
+            Gemini AI is creating personalized questions based on your topic.
+
+        </p>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- QUIZ CONTAINER -->
+    <!-- ========================================= -->
+
+    <section id="quizContainer" class="quiz-container hidden">
+
+        <!-- Quiz Header -->
+
+        <div class="quiz-top">
+
+            <div>
+
+                <h2 id="questionCounter">
+
+                    Question 1 / 10
+
+                </h2>
+
+                <p id="quizTopicName">
+
+                    AI Generated Quiz
+
+                </p>
+
+            </div>
+
+            <div class="quiz-timer">
+
+                <i class="fa-solid fa-clock"></i>
+
+                <span id="timer">
+
+                    15:00
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Progress Bar -->
+
+        <div class="progress-container">
+
+            <div
+                id="progressBar"
+                class="progress-bar">
+
+            </div>
+
+        </div>
+
+        <!-- Question -->
+
+        <div class="question-card">
+
+            <h2 id="questionText">
+
+                Your AI generated question will appear here.
+
+            </h2>
+
+        </div>
+
+        <!-- Options -->
+
+        <div
+            id="optionsContainer"
+            class="options-container">
+
+            <!-- Options generated by JavaScript -->
+
+        </div>
+
+        <!-- Navigation -->
+
+        <div class="quiz-navigation">
+
+            <button
+                id="prevBtn"
+                class="btn secondary">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Previous
+
+            </button>
+
+            <button
+                id="nextBtn"
+                class="btn primary">
+
+                Next
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+            <button
+                id="submitQuizBtn"
+                class="btn success hidden">
+
+                <i class="fa-solid fa-check"></i>
+
+                Submit Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- RESULT CONTAINER -->
+    <!-- ========================================= -->
+
+    <section id="resultContainer" class="result-container hidden">
+
+        <div class="result-header">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <h2>Quiz Completed</h2>
+
+        </div>
+
+        <p class="result-subtitle">
+
+            Here is your quiz performance.
+
+        </p>
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <h1 id="scoreValue">
+
+                    0 / 10
+
+                </h1>
+
+                <span>
+
+                    Score
+
+                </span>
+
+            </div>
+
+            <div class="result-card">
+
+                <h1 id="accuracyValue">
+
+                    0%
+
+                </h1>
+
+                <span>
+
+                    Accuracy
+
+                </span>
+
+            </div>
+
+            <div class="result-card">
+
+                <h1 id="performanceValue">
+
+                    Beginner
+
+                </h1>
+
+                <span>
+
+                    Performance
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="result-buttons">
+
+            <button
+                id="restartQuizBtn"
+                class="btn secondary">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Generate Another Quiz
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ==========================================
+     QUIZ SETTINGS MODAL
+========================================== -->
+
+<div id="settingsModal" class="settings-modal hidden">
+
+    <div class="settings-content">
+
+        <div class="settings-header">
+
+            <h2>
+                <i class="fas fa-cog"></i>
+                Quiz Settings
+            </h2>
+
+            <button id="closeSettings">
+                <i class="fas fa-times"></i>
+            </button>
+
+        </div>
+
+        <div class="settings-body">
+
+            <!-- Timer -->
+
+            <div class="setting-group">
+
+                <label>Quiz Timer</label>
+
+                <select id="quizTimer">
+
+                    <option value="300">5 Minutes</option>
+
+                    <option value="600">10 Minutes</option>
+
+                    <option value="900" selected>15 Minutes</option>
+
+                    <option value="1800">30 Minutes</option>
+
+                </select>
+
+            </div>
+
+            <!-- Shuffle Questions -->
+
+            <div class="setting-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="shuffleQuestions">
+
+                    Shuffle Questions
+
+                </label>
+
+            </div>
+
+            <!-- Shuffle Options -->
+
+            <div class="setting-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="shuffleOptions">
+
+                    Shuffle Options
+
+                </label>
+
+            </div>
+
+            <!-- Auto Submit -->
+
+            <div class="setting-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="autoSubmit"
+                        checked>
+
+                    Auto Submit When Time Ends
+
+                </label>
+
+            </div>
+
+            <!-- Show Answers -->
+
+            <div class="setting-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="showAnswers"
+                        checked>
+
+                    Show Correct Answers
+
+                </label>
+
+            </div>
+
+            <!-- Instant Feedback -->
+
+            <div class="setting-group">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="instantFeedback">
+
+                    Instant Feedback
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="settings-footer">
+
+            <button id="cancelSettings">
+
+                Cancel
+
+            </button>
+
+            <button id="saveSettings">
+
+                Save & Start Quiz
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="quiz-streak-card">
+    <i class="fa-solid fa-fire"></i>
+    <div>
+        <h3>Quiz Streak</h3>
+        <p id="quizStreak">0 Days</p>
+    </div>
+</div>
+<!-- ========================================= -->
+<!-- QUIZ JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script src="../js/quiz.js"></script>
+
+</body>
+
+</html>
+

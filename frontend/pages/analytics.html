@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Analytics | AI Study Planner</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="../css/analytics.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="planner.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Planner
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="calendar.html">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                Calendar
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="notes.html">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                Notes
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="flashcards.html">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                Flashcards
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="quiz.html">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                Quiz
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="analytics-main">
+
+    <!-- Header -->
+
+    <header class="analytics-header">
+
+        <div>
+
+            <h1>
+
+                📊 Analytics Dashboard
+
+            </h1>
+
+            <p>
+
+                Monitor your study habits, productivity and AI learning insights.
+
+            </p>
+
+        </div>
+
+        <div class="header-buttons">
+
+          <button class="btn secondary export-report-btn">
+
+                <i class="fa-solid fa-download"></i>
+
+                Export Report
+
+            </button>
+
+            <button class="btn primary ai-analysis-btn">
+
+    🤖 AI Analysis
+
+</button>
+
+        </div>
+
+    </header>
+
+    <!-- Overview Cards -->
+
+    <section class="overview-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📈 Overview
+
+            </h2>
+
+        </div>
+
+        <div class="overview-grid">
+
+            <div class="overview-item">
+<h3 id="totalStudyTime">0 hrs</h3>
+
+                <p>
+
+                    Total Study Time
+
+                </p>
+
+            </div>
+
+            <div class="overview-item">
+
+                <h3 id="studyStreak">0 Days</h3>
+
+                <p>
+
+                    Study Streak
+
+                </p>
+
+            </div>
+
+            <div class="overview-item">
+
+                <h3 id="averageQuizScore">0%</h3>
+
+                <p>
+
+                    Average Quiz Score
+
+                </p>
+
+            </div>
+
+            <div class="overview-item">
+
+                <h3 id="flashcardsReviewed">0</h3>
+
+                <p>
+
+                    Flashcards Reviewed
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Weekly Progress -->
+
+    <section class="chart-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📅 Weekly Study Progress
+
+            </h2>
+
+        </div>
+
+        <div class="chart-container">
+
+    <canvas id="weeklyChart"></canvas>
+
+</div>
+
+    </section>
+
+    <!-- Subject Performance -->
+
+    <section class="subject-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📚 Subject Performance
+
+            </h2>
+
+        </div>
+
+        
+        <div id="subjectPerformanceContainer"
+     class="subject-performance-grid">
+
+</div>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- STUDY STREAK -->
+    <!-- ========================================= -->
+
+    <section class="streak-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🔥 Study Streak
+
+            </h2>
+
+        </div>
+
+        <div class="streak-content">
+
+           <div class="streak-circle">
+
+    <h2 id="streakDays">
+        0
+    </h2>
+
+    <p>
+        Days
+    </p>
+
+</div>
+
+           <div class="streak-info">
+
+    <h3 id="streakTitle">
+        Start Your Journey!
+    </h3>
+
+    <p id="streakMessage">
+        Complete your first study session to begin your streak.
+    </p>
+
+</div>
+
+        </div>
+
+    </section>
+
+   
+
+
+<!-- ==========================================
+AI ANALYSIS MODAL
+========================================== -->
+
+<div id="aiAnalysisModal" class="modal">
+
+    <div class="modal-content ai-modal">
+
+        <div class="modal-header">
+
+            <h2>
+                🤖 AI Study Analysis
+            </h2>
+
+            <button id="closeAiModal">
+                ✖
+            </button>
+
+        </div>
+
+        <div
+            id="aiAnalysisContent"
+            class="ai-analysis-content">
+
+            <div class="loading">
+
+                Analyzing your study performance...
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+</html>
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Analytics JS -->
+
+<script src="../js/analytics.js"></script>

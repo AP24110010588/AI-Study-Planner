@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | AI Study Planner</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/settings.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        🤖 AI Study Planner
+    </div>
+
+    <ul class="menu">
+
+        <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+
+        <li><a href="planner.html"><i class="fa-solid fa-calendar-days"></i> Planner</a></li>
+
+        <li><a href="calendar.html"><i class="fa-solid fa-calendar"></i> Calendar</a></li>
+
+        <li><a href="notes.html"><i class="fa-solid fa-note-sticky"></i> Notes</a></li>
+
+        <li><a href="flashcards.html"><i class="fa-solid fa-layer-group"></i> Flashcards</a></li>
+
+        <li><a href="quiz.html"><i class="fa-solid fa-file-circle-question"></i> Quiz</a></li>
+
+        <li><a href="analytics.html"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+
+        <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
+
+        <li class="active"><a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="settings-main">
+
+<header class="settings-header">
+
+<div>
+
+<h1>⚙ Settings</h1>
+
+<p>Customize your AI Study Planner experience.</p>
+
+</div>
+
+<div class="header-buttons">
+
+<button id="resetBtn" class="btn secondary">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Reset
+
+</button>
+
+<button id="saveBtn" class="btn primary">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Save Settings
+
+</button>
+
+</div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- GENERAL SETTINGS -->
+<!-- ========================================= -->
+
+<section class="general-card">
+
+<div class="section-title">
+
+<h2>⚙ General Settings</h2>
+
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-item">
+
+<label>Full Name</label>
+
+<input
+id="fullName"
+type="text"
+placeholder="Enter your name">
+
+</div>
+
+<div class="setting-item">
+
+<label>Email</label>
+
+<input
+id="email"
+type="email"
+placeholder="Enter email">
+
+</div>
+
+<div class="setting-item">
+
+<label>Language</label>
+
+<select id="language">
+
+<option value="English">English</option>
+
+<option value="Telugu">Telugu</option>
+
+<option value="Hindi">Hindi</option>
+
+</select>
+
+</div>
+
+<div class="setting-item">
+
+<label>Time Zone</label>
+
+<select id="timeZone">
+
+<option value="Asia/Kolkata">Asia/Kolkata</option>
+
+<option value="UTC">UTC</option>
+
+<option value="GMT">GMT</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- APPEARANCE -->
+<!-- ========================================= -->
+
+<section class="appearance-card">
+
+<div class="section-title">
+
+<h2>🎨 Appearance</h2>
+
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-item">
+
+<label>Theme</label>
+
+<select id="theme">
+
+<option value="Light">Light</option>
+
+<option value="Dark">Dark</option>
+
+<option value="System Default">System Default</option>
+
+</select>
+
+</div>
+
+<div class="setting-item">
+
+<label>Font Size</label>
+
+<select id="fontSize">
+
+<option value="Small">Small</option>
+
+<option value="Medium" selected>Medium</option>
+
+<option value="Large">Large</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- NOTIFICATIONS -->
+<!-- ========================================= -->
+
+<section class="notification-card">
+
+<div class="section-title">
+
+<h2>🔔 Notifications</h2>
+
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-item">
+
+<label>Study Reminder</label>
+
+<input
+id="studyReminder"
+type="checkbox"
+checked>
+
+</div>
+
+<div class="setting-item">
+
+<label>Email Notifications</label>
+
+<input
+id="emailNotifications"
+type="checkbox"
+checked>
+
+</div>
+
+<div class="setting-item">
+
+<label>Quiz Reminder</label>
+
+<input
+id="quizReminder"
+type="checkbox">
+
+</div>
+
+<div class="setting-item">
+
+<label>Achievement Alerts</label>
+
+<input
+id="achievementAlerts"
+type="checkbox"
+checked>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="../js/settings.js"></script>
+
+</body>
+
+</html>

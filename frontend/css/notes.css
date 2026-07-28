@@ -1,0 +1,1217 @@
+/*==================================================
+AI STUDY PLANNER
+NOTES MODULE
+PART 2A
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F5F7FF;
+
+    color:#1E293B;
+
+    display:flex;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/*=====================================
+SIDEBAR
+=====================================*/
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    padding:30px 20px;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+}
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:10px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.menu li a:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.menu li.active a{
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+MAIN
+=====================================*/
+
+.notes-main{
+
+    margin-left:280px;
+
+    width:calc(100% - 280px);
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+
+}
+
+/*=====================================
+HEADER
+=====================================*/
+
+.notes-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.notes-header h1{
+
+    font-size:40px;
+
+    margin-bottom:8px;
+
+}
+
+.notes-header p{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.header-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 24px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    transition:.3s;
+
+}
+
+.btn.primary{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+}
+
+.btn.secondary{
+
+    background:white;
+
+    color:#4F46E5;
+
+    border:2px solid #E2E8F0;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+SECTION CARDS
+=====================================*/
+
+.search-card,
+.folders-card,
+.notes-card,
+.ai-notes-card,
+.editor-card,
+.stats-card{
+
+    width:100%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.search-card:hover,
+.folders-card:hover,
+.notes-card:hover,
+.ai-notes-card:hover,
+.editor-card:hover,
+.stats-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*=====================================
+SECTION TITLE
+=====================================*/
+
+.section-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:26px;
+
+}
+
+.section-title button{
+
+    border:none;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+/*=====================================
+SEARCH
+=====================================*/
+
+.search-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    padding:0 20px;
+
+    height:60px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    font-size:15px;
+
+    background:transparent;
+
+}
+
+/*=====================================
+FOLDERS
+=====================================*/
+
+/* ==========================================
+   SUBJECT FOLDER CARD
+========================================== */
+
+.folder-card{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    background:#f8f9ff;
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    margin-bottom:15px;
+
+    transition:.3s;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+}
+
+.folder-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 20px rgba(91,76,240,.15);
+
+}
+
+.folder-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.folder-icon{
+
+    font-size:30px;
+
+}
+
+.folder-name{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#222;
+
+}
+
+.delete-folder-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#ef4444;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.delete-folder-btn:hover{
+
+    transform:scale(1.15);
+
+}
+/*=====================================
+RECENT NOTES
+=====================================*/
+
+.notes-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.note-item{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.note-item:hover{
+
+    transform:translateY(-5px);
+
+    background:#EEF2FF;
+
+}
+
+.note-item h3{
+
+    margin-bottom:15px;
+
+}
+
+.note-item p{
+
+    color:#64748B;
+
+    line-height:1.7;
+
+    margin-bottom:15px;
+
+}
+
+.note-item span{
+
+    font-size:14px;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*==================================================
+AI STUDY PLANNER
+NOTES MODULE
+PART 2B
+==================================================*/
+
+/*=====================================
+AI NOTES ASSISTANT
+=====================================*/
+
+.premium{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.ai-description{
+
+    color:#64748B;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+.ai-search{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.ai-search input{
+
+    flex:1;
+
+    height:58px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    padding:0 20px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.ai-search input:focus{
+
+    border-color:#4F46E5;
+
+}
+
+.ai-search button{
+
+    border:none;
+
+    padding:0 28px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+.quick-prompts{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+.quick-prompts button{
+
+    border:none;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.quick-prompts button:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+#aiResult{
+
+    min-height:250px;
+
+    border:2px dashed #CBD5E1;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+    text-align:center;
+
+}
+
+.empty-ai i{
+
+    font-size:60px;
+
+    color:#4F46E5;
+
+    margin-bottom:20px;
+
+}
+
+.empty-ai h3{
+
+    margin-bottom:10px;
+
+}
+
+.empty-ai p{
+
+    color:#64748B;
+
+    line-height:1.8;
+
+}
+
+/*=====================================
+EDITOR
+=====================================*/
+
+.toolbar{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:20px;
+
+}
+
+.toolbar button{
+
+    width:45px;
+
+    height:45px;
+
+    border:none;
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.toolbar button:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+#noteEditor{
+
+    width:100%;
+
+    min-height:420px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    font-size:16px;
+
+    resize:vertical;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+#noteEditor:focus{
+
+    border-color:#4F46E5;
+
+}
+
+/*=====================================
+STATISTICS
+=====================================*/
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+
+}
+
+.stat{
+
+    background:#F8FAFC;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.stat:hover{
+
+    background:#EEF2FF;
+
+    transform:translateY(-6px);
+
+}
+
+.stat h3{
+
+    font-size:34px;
+
+    color:#4F46E5;
+
+    margin-bottom:10px;
+
+}
+
+.stat p{
+
+    color:#64748B;
+
+}
+
+/*=====================================
+MODAL
+=====================================*/
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.65);
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:999;
+
+}
+
+.modal-overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.note-modal{
+
+    width:700px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    animation:popup .35s ease;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.modal-header button{
+
+    border:none;
+
+    background:none;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+#noteForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+#noteForm input,
+#noteForm select,
+#noteForm textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+#noteForm input:focus,
+#noteForm select:focus,
+#noteForm textarea:focus{
+
+    border-color:#4F46E5;
+
+}
+
+.save-btn{
+
+    height:55px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+/*=====================================
+ANIMATIONS
+=====================================*/
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.search-card,
+.folders-card,
+.notes-card,
+.ai-notes-card,
+.editor-card,
+.stats-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:20px 10px;
+
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .menu li a{
+
+        justify-content:center;
+
+        font-size:0;
+
+    }
+
+    .menu li a i{
+
+        font-size:20px;
+
+    }
+
+    .notes-main{
+
+        margin-left:90px;
+
+        width:calc(100% - 90px);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .notes-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .header-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .ai-search{
+
+        flex-direction:column;
+
+    }
+
+    .ai-search button{
+
+        height:55px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .folder-grid,
+    .notes-grid,
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/*=====================================
+SCROLLBAR
+=====================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F46E5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF2FF;
+
+}
+
+/* =====================================
+   Folder Form
+===================================== */
+
+#folderForm{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+#folderForm input{
+    width:260px;
+    height:48px;
+    padding:0 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+#folderForm select{
+    width:150px;
+    height:48px;
+    padding:0 10px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+#folderForm button{
+    height:48px;
+    padding:0 28px;
+    border:none;
+    border-radius:12px;
+    background:#5B4CF0;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+#folderForm button:hover{
+    background:#4736e6;
+}
+
+.delete-folder-btn{
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#ef4444;
+
+    font-size:18px;
+
+    margin-top:10px;
+
+}
+
+.delete-folder-btn:hover{
+
+    transform:scale(1.1);
+
+}
+
+.folder-actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.edit-folder-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#5B4CF0;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
+
+.edit-folder-btn:hover{
+
+    transform:scale(1.1);
+
+}

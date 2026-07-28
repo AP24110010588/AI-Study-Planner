@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notes | AI Study Planner</title>
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Notes CSS -->
+
+    <link rel="stylesheet"
+          href="../css/notes.css">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        🤖 AI Study Planner
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="planner.html">
+
+                <i class="fa-solid fa-calendar-days"></i>
+
+                Planner
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="calendar.html">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                Calendar
+
+            </a>
+
+        </li>
+
+        <li class="active">
+
+            <a href="notes.html">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                Notes
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="flashcards.html">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                Flashcards
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="quiz.html">
+
+                <i class="fa-solid fa-file-circle-question"></i>
+
+                Quiz
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="notes-main">
+
+    <!-- Header -->
+
+    <header class="notes-header">
+
+        <div>
+
+            <h1>
+
+                📝 AI Notes
+
+            </h1>
+
+            <p>
+
+                Organize, summarize and study smarter with AI.
+
+            </p>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="btn secondary" id="newFolderBtn">
+    <i class="fa-solid fa-folder-plus"></i>
+    New Folder
+</button>
+
+            <button class="btn primary" id="newNoteBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Note
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- Search -->
+
+    <section class="search-card">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+    type="text"
+    id="searchNotes"
+    placeholder="Search notes...">
+
+        </div>
+
+    </section>
+
+    <!-- Subject Folders -->
+
+    <section class="folders-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📂 Subject Folders
+
+            </h2>
+
+        </div>
+
+       <div class="folders-list" id="foldersList">
+</div>
+
+    </section>
+
+    <!-- Recent Notes -->
+
+    <section class="notes-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                📑 Recent Notes
+
+            </h2>
+
+            <button id="viewAllNotes">
+    View All
+</button>
+
+        </div>
+
+       <div class="notes-grid" id="notesGrid">
+
+            <div class="note-item">
+
+                <h3>
+
+                    Java OOP
+
+                </h3>
+
+                <p>
+
+                    Classes, Objects, Inheritance,
+                    Polymorphism...
+
+                </p>
+
+                <span>
+
+                    Updated Today
+
+                </span>
+
+            </div>
+
+            <div class="note-item">
+
+                <h3>
+
+                    DBMS Transactions
+
+                </h3>
+
+                <p>
+
+                    ACID Properties,
+                    Locks, Serializability...
+
+                </p>
+
+                <span>
+
+                    Yesterday
+
+                </span>
+
+            </div>
+
+            <div class="note-item">
+
+                <h3>
+
+                    SQL Queries
+
+                </h3>
+
+                <p>
+
+                    Joins,
+                    Normalization,
+                    Constraints...
+
+                </p>
+
+                <span>
+
+                    2 Days Ago
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+        <!-- ========================================= -->
+    <!-- AI NOTES ASSISTANT -->
+    <!-- ========================================= -->
+
+    <section class="ai-notes-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                🤖 AI Notes Assistant
+
+            </h2>
+
+            <span class="premium">
+
+                Premium AI
+
+            </span>
+
+        </div>
+
+        <p class="ai-description">
+
+            Summarize notes, generate flashcards,
+            create quizzes and explain difficult topics.
+
+        </p>
+
+        <div class="ai-search">
+
+            <input
+                type="text"
+                id="aiPrompt"
+                placeholder="Example: Summarize my DBMS notes">
+
+            <button id="generateAI">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Generate
+
+            </button>
+
+        </div>
+
+        <div class="quick-prompts">
+
+            <button>📄 Summarize</button>
+
+            <button>🧠 Generate Quiz</button>
+
+            <button>📚 Flashcards</button>
+
+            <button>🌍 Translate</button>
+
+        </div>
+
+        <div id="aiResult">
+
+            <div class="empty-ai">
+
+                <i class="fa-solid fa-robot"></i>
+
+                <h3>
+
+                    AI Assistant Ready
+
+                </h3>
+
+                <p>
+
+                    Your AI generated content
+                    will appear here.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================= -->
+    <!-- NOTE EDITOR -->
+    <!-- ========================================= -->
+
+    <section class="editor-card">
+
+        <div class="section-title">
+
+            <h2>
+
+                ✍️ Rich Text Editor
+
+            </h2>
+
+        </div>
+
+        <div class="toolbar">
+
+            <button><i class="fa-solid fa-bold"></i></button>
+
+            <button><i class="fa-solid fa-italic"></i></button>
+
+            <button><i class="fa-solid fa-underline"></i></button>
+
+            <button><i class="fa-solid fa-list"></i></button>
+
+            <button><i class="fa-solid fa-list-ol"></i></button>
+
+            <button><i class="fa-solid fa-code"></i></button>
+
+        </div>
+
+        <textarea
+
+            id="noteEditor"
+
+            placeholder="Start writing your notes here...">
+
+        </textarea>
+
+    </section>
+
+
+   <!-- ========================================= -->
+<!-- NOTES STATISTICS -->
+<!-- ========================================= -->
+
+<section class="stats-card">
+
+    <div class="section-title">
+
+        <h2>
+
+            📊 Notes Statistics
+
+        </h2>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <!-- Total Notes -->
+
+        <div class="stat">
+
+            <h3 id="totalNotes">0</h3>
+
+            <p>Total Notes</p>
+
+        </div>
+
+        <!-- Favorite Notes -->
+
+        <div class="stat">
+
+            <h3 id="favoriteNotes">0</h3>
+
+            <p>Favorites</p>
+
+        </div>
+
+        <!-- AI Summaries -->
+
+        <div class="stat">
+
+            <h3 id="aiSummaries">0</h3>
+
+            <p>AI Summaries</p>
+
+        </div>
+
+        <!-- Flashcards -->
+
+        <div class="stat">
+
+            <h3 id="flashcardCount">0</h3>
+
+            <p>Flashcards</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ========================================= -->
+    <!-- ADD NOTE MODAL -->
+    <!-- ========================================= -->
+
+    <div class="modal-overlay" id="noteModal">
+
+        <div class="note-modal">
+
+            <div class="modal-header">
+
+                <h2>
+
+                    ➕ Create New Note
+
+                </h2>
+
+                <button id="closeModal">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                </button>
+
+            </div>
+
+            <form id="noteForm">
+
+                <input
+    type="text"
+    id="noteTitle"
+    placeholder="Note Title"
+    required>
+    <div class="form-group">
+
+    <label>Folder</label>
+
+    <select id="noteFolder">
+
+        <option value="">Select Folder</option>
+
+    </select>
+
+</div>
+
+               <select id="noteSubject">
+
+                    <option>Java</option>
+
+                    <option>Python</option>
+
+                    <option>DBMS</option>
+
+                    <option>SQL</option>
+
+                    <option>Operating Systems</option>
+
+                    <option>Data Structures</option>
+
+                </select>
+
+               <textarea
+    id="noteContent"
+    rows="8"
+    placeholder="Write your note...">
+</textarea>
+
+                <button
+
+                    type="submit"
+
+                    class="save-btn">
+
+                    Save Note
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+<!-- ========================================= -->
+<!-- CREATE FOLDER MODAL -->
+<!-- ========================================= -->
+
+<div class="modal-overlay" id="folderModal">
+
+    <div class="note-modal">
+
+        <div class="modal-header">
+
+            <h2>📁 Create Folder</h2>
+
+            <button id="closeFolderModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="folderForm">
+
+            <input
+                type="text"
+                id="folderName"
+                placeholder="Folder Name"
+                required>
+
+            <select id="folderIcon">
+
+                <option value="📘">📘 Book</option>
+                <option value="🐍">🐍 Python</option>
+                <option value="💾">💾 Database</option>
+                <option value="📊">📊 Analytics</option>
+                <option value="⚙️">⚙️ System</option>
+                <option value="📁">📁 Default</option>
+
+            </select>
+
+            <button
+                type="submit"
+                class="save-btn">
+
+                Create Folder
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</main>
+
+<script src="../js/notes.js"></script>
+
+</body>
+
+</html>

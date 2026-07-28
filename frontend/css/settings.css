@@ -1,0 +1,720 @@
+/*==================================================
+AI STUDY PLANNER
+SETTINGS MODULE
+PART 2A
+==================================================*/
+
+/*=====================================
+GOOGLE FONT
+=====================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=====================================
+RESET
+=====================================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F5F7FF;
+
+    color:#1E293B;
+
+    display:flex;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+}
+
+/*=====================================
+SIDEBAR
+=====================================*/
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:280px;
+
+    height:100vh;
+
+    background:linear-gradient(
+        180deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    padding:30px 20px;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:50px;
+
+}
+
+.menu{
+
+    list-style:none;
+
+}
+
+.menu li{
+
+    margin-bottom:10px;
+
+}
+
+.menu li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    transition:.3s;
+
+}
+
+.menu li a:hover{
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.menu li.active a{
+
+    background:white;
+
+    color:#4F46E5;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+MAIN CONTENT
+=====================================*/
+
+.settings-main{
+
+    margin-left:280px;
+
+    width:calc(100% - 280px);
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:35px;
+
+}
+
+/*=====================================
+HEADER
+=====================================*/
+
+.settings-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.settings-header h1{
+
+    font-size:40px;
+
+    margin-bottom:8px;
+
+}
+
+.settings-header p{
+
+    color:#64748B;
+
+    line-height:1.7;
+
+}
+
+/*=====================================
+BUTTONS
+=====================================*/
+
+.header-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.btn{
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:15px 24px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn.primary{
+
+    background:linear-gradient(
+        135deg,
+        #4F46E5,
+        #7C3AED
+    );
+
+    color:white;
+
+}
+
+.btn.secondary{
+
+    background:white;
+
+    color:#4F46E5;
+
+    border:2px solid #E2E8F0;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*=====================================
+SECTION CARDS
+=====================================*/
+
+.general-card,
+.appearance-card,
+.notification-card,
+.ai-card,
+.study-card,
+.privacy-card,
+.backup-card,
+.accounts-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.general-card:hover,
+.appearance-card:hover,
+.notification-card:hover,
+.ai-card:hover,
+.study-card:hover,
+.privacy-card:hover,
+.backup-card:hover,
+.accounts-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*=====================================
+SECTION TITLE
+=====================================*/
+
+.section-title{
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:26px;
+
+    color:#1E293B;
+
+}
+
+/*=====================================
+SETTINGS GRID
+=====================================*/
+
+.settings-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.setting-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.setting-item label{
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+/*=====================================
+INPUTS
+=====================================*/
+
+.setting-item input,
+.setting-item select,
+.setting-item textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:2px solid #E2E8F0;
+
+    border-radius:15px;
+
+    outline:none;
+
+    background:white;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    transition:.3s;
+
+}
+
+.setting-item textarea{
+
+    resize:vertical;
+
+    min-height:120px;
+
+}
+
+.setting-item input:focus,
+.setting-item select:focus,
+.setting-item textarea:focus{
+
+    border-color:#4F46E5;
+
+    box-shadow:0 0 0 4px rgba(79,70,229,.12);
+
+}
+
+/*=====================================
+CHECKBOXES
+=====================================*/
+
+.setting-item input[type="checkbox"]{
+
+    width:22px;
+
+    height:22px;
+
+    accent-color:#4F46E5;
+
+    cursor:pointer;
+
+}
+
+/*==================================================
+AI STUDY PLANNER
+SETTINGS MODULE
+PART 2B
+==================================================*/
+
+/*=====================================
+CONNECTED ACCOUNT BUTTONS
+=====================================*/
+
+.accounts-card .btn{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.accounts-card .btn.secondary{
+
+    background:#EEF2FF;
+
+    color:#4F46E5;
+
+    border:2px solid #4F46E5;
+
+}
+
+.accounts-card .btn.secondary:hover{
+
+    background:#4F46E5;
+
+    color:white;
+
+}
+
+/*=====================================
+READONLY INPUTS
+=====================================*/
+
+.setting-item input[readonly]{
+
+    background:#F8FAFC;
+
+    color:#64748B;
+
+    cursor:not-allowed;
+
+}
+
+/*=====================================
+NUMBER INPUTS
+=====================================*/
+
+.setting-item input[type="number"]{
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+/*=====================================
+CARD HOVER EFFECT
+=====================================*/
+
+.general-card:hover,
+.appearance-card:hover,
+.notification-card:hover,
+.ai-card:hover,
+.study-card:hover,
+.privacy-card:hover,
+.backup-card:hover,
+.accounts-card:hover{
+
+    box-shadow:0 20px 45px rgba(79,70,229,.12);
+
+}
+
+/*=====================================
+SAVE BUTTON EFFECT
+=====================================*/
+
+.btn.primary:hover{
+
+    box-shadow:0 10px 25px rgba(79,70,229,.35);
+
+}
+
+/*=====================================
+RESET BUTTON EFFECT
+=====================================*/
+
+.btn.secondary:hover{
+
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+
+}
+
+/*=====================================
+ANIMATION
+=====================================*/
+
+.general-card,
+.appearance-card,
+.notification-card,
+.ai-card,
+.study-card,
+.privacy-card,
+.backup-card,
+.accounts-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=====================================
+RESPONSIVE
+=====================================*/
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:90px;
+
+        padding:20px 10px;
+
+    }
+
+    .logo{
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+    .menu li a{
+
+        justify-content:center;
+
+        font-size:0;
+
+    }
+
+    .menu li a i{
+
+        font-size:20px;
+
+    }
+
+    .settings-main{
+
+        margin-left:90px;
+
+        width:calc(100% - 90px);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .settings-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:20px;
+
+    }
+
+    .header-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .settings-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .settings-main{
+
+        padding:20px;
+
+    }
+
+    .section-title h2{
+
+        font-size:22px;
+
+    }
+
+}
+
+/*=====================================
+SCROLLBAR
+=====================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#EEF2FF;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#4F46E5;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#3730A3;
+
+}
+
+/* =====================================
+DARK MODE
+===================================== */
+
+body.dark-mode{
+    background:#0F172A;
+    color:#F8FAFC;
+    transition:0.3s;
+}
+
+body.dark-mode .settings-main{
+    background:#0F172A;
+}
+
+body.dark-mode .general-card,
+body.dark-mode .appearance-card,
+body.dark-mode .notification-card{
+    background:#1E293B;
+    color:#F8FAFC;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+body.dark-mode .section-title h2,
+body.dark-mode .setting-item label,
+body.dark-mode .settings-header h1{
+    color:#F8FAFC;
+}
+
+body.dark-mode .settings-header p{
+    color:#CBD5E1;
+}
+
+body.dark-mode .setting-item input,
+body.dark-mode .setting-item select{
+    background:#334155;
+    color:white;
+    border:2px solid #475569;
+}
+
+body.dark-mode .setting-item input::placeholder{
+    color:#CBD5E1;
+}
+
+body.dark-mode .btn.secondary{
+    background:#334155;
+    color:white;
+    border:2px solid #475569;
+}
+
+body.dark-mode .sidebar{
+    background:linear-gradient(
+        180deg,
+        #111827,
+        #1E293B
+    );
+}

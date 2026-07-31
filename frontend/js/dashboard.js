@@ -1,8 +1,12 @@
-/* ============================================================
+/* ==========================================================
    AI STUDY PLANNER
    dashboard.js
-   Part 1
-============================================================ */
+   PART 1
+========================================================== */
+
+/* ================================
+   API CONFIGURATION
+================================ */
 
 const API_URL = "https://ai-study-planner-3nt2.onrender.com/api";
 
@@ -12,16 +16,18 @@ if (!token) {
     window.location.href = "../pages/login.html";
 }
 
-/* ============================================================
+/* ================================
    GLOBAL VARIABLES
-============================================================ */
+================================ */
 
 let dashboardData = {};
-let weeklyChart = null;
+let userData = {};
 
-/* ============================================================
+/* ================================
    DOM ELEMENTS
-============================================================ */
+================================ */
+
+// Header
 
 const userName = document.getElementById("userName");
 const profileName = document.getElementById("profileName");
@@ -29,138 +35,167 @@ const profileEmail = document.getElementById("profileEmail");
 const profileImage = document.getElementById("profileImage");
 const currentDate = document.getElementById("currentDate");
 
+// Loader
+
 const loadingOverlay = document.getElementById("loadingOverlay");
 
-/* Statistics */
+// Statistics
 
 const totalSubjects = document.getElementById("totalSubjects");
 const todayTasks = document.getElementById("todayTasks");
 const totalNotes = document.getElementById("totalNotes");
+const statsStudyHours = document.getElementById("statsStudyHours");
+const statsStudyStreak = document.getElementById("statsStudyStreak");
+const flashcardCount = document.getElementById("flashcardCount");
 
-const statsStudyHours =
-    document.getElementById("statsStudyHours");
+// Goal
 
-const statsStudyStreak =
-    document.getElementById("statsStudyStreak");
+const goalPercent = document.getElementById("goalPercent");
+const goalHours = document.getElementById("goalHours");
+const goalRemaining = document.getElementById("goalRemaining");
+const goalProgressCircle = document.getElementById("goalProgressCircle");
 
-const flashcardCount =
-    document.getElementById("flashcardCount");
+// Achievement
 
-const quizScore =
-    document.getElementById("quizScore");
+const achievementStudyHours = document.getElementById("achievementStudyHours");
+const achievementStudyStreak = document.getElementById("achievementStudyStreak");
+const completedSubjects = document.getElementById("completedSubjects");
+const quizAccuracy = document.getElementById("quizAccuracy");
 
-const productivityScore =
-    document.getElementById("productivityScore");
+/* ================================
+   SHOW LOADER
+================================ */
 
-/* Achievement Cards */
+function showLoader() {
 
-const achievementStudyHours =
-    document.getElementById("achievementStudyHours");
+    if (loadingOverlay) {
 
-const achievementStudyStreak =
-    document.getElementById("achievementStudyStreak");
+        loadingOverlay.style.display = "flex";
 
-const completedSubjects =
-    document.getElementById("completedSubjects");
+    }
 
-const quizAccuracy =
-    document.getElementById("quizAccuracy");
+}
 
-/* Goal */
+/* ================================
+   HIDE LOADER
+================================ */
 
-const goalPercent =
-    document.getElementById("goalPercent");
+function hideLoader() {
 
-const goalHours =
-    document.getElementById("goalHours");
+    if (loadingOverlay) {
 
-const goalRemaining =
-    document.getElementById("goalRemaining");
+        loadingOverlay.style.display = "none";
 
-/* Containers */
+    }
 
-const plannerList =
-    document.getElementById("plannerList");
+}
 
-const todayEvents =
-    document.getElementById("todayEvents");
+/* ================================
+   CURRENT DATE
+================================ */
 
-const recentNotes =
-    document.getElementById("recentNotes");
+function updateCurrentDate() {
 
-const subjectsContainer =
-    document.getElementById("subjectsContainer");
+    if (!currentDate) return;
 
-const recentActivity =
-    document.getElementById("recentActivity");
+    currentDate.textContent = new Date().toLocaleDateString(
 
-const aiRecommendations =
-    document.getElementById("aiRecommendations");
-const eventList = document.getElementById("eventList");
+        "en-US",
 
-const notesList = document.getElementById("notesList");
-/* ============================================================
-   INITIALIZE
-============================================================ */
+        {
 
-document.addEventListener("DOMContentLoaded", async () => {
+            weekday: "long",
 
-    showLoader();
+            year: "numeric",
 
-    updateCurrentDate();
+            month: "long",
 
-    await loadDashboard();
+            day: "numeric"
 
-    hideLoader();
-loadCalendar();
+        }
 
- loadNotes();
-});
+    );
 
-/* ============================================================
-   LOAD COMPLETE DASHBOARD
-============================================================ */
+}
+
+/* ================================
+   LOAD USER
+================================ */
+
+function loadUser() {
+
+    userData = JSON.parse(localStorage.getItem("user")) || {};
+
+    if (userName)
+        userName.textContent = userData.name || "Student";
+
+    if (profileName)
+        profileName.textContent = userData.name || "Student";
+
+    if (profileEmail)
+        profileEmail.textContent = userData.email || "";
+
+    if (profileImage && userData.avatar) {
+
+        profileImage.src = userData.avatar;
+
+    }
+
+}
+
+/* ================================
+   LOAD DASHBOARD
+================================ */
 
 async function loadDashboard() {
 
     try {
 
+        showLoader();
+
         const response = await fetch(
+
             `${API_URL}/dashboard`,
+
             {
+
                 headers: {
+
                     Authorization: `Bearer ${token}`
+
                 }
+
             }
+
         );
 
         const result = await response.json();
 
         if (!result.success) {
 
-            throw new Error("Dashboard load failed");
+            throw new Error(result.message);
 
         }
 
-       dashboardData = result.dashboard;
+        dashboardData = result.dashboard;
 
-loadUser();
+        loadUser();
 
-loadStatistics();
+        loadStatistics();
 
-loadPlanner();
+        // Part 2 Functions
 
-loadCalendar();
+        loadPlanner();
 
-loadNotes();
+        loadCalendar();
 
-loadSubjects();
+        loadNotes();
 
-updateGoalProgress();
+        loadSubjects();
 
-loadAnalytics();
+        updateGoalProgress();
 
-loadAIRecommendations();
+        loadAIRecommendations();
 
     }
 
@@ -172,52 +207,37 @@ loadAIRecommendations();
 
     }
 
-}
+    finally {
 
-/* ============================================================
-   USER INFO
-============================================================ */
-
-function loadUser() {
-
-    const user =
-        JSON.parse(localStorage.getItem("user")) || {};
-
-    userName.textContent =
-        user.name || "Student";
-
-    profileName.textContent =
-        user.name || "Student";
-
-    profileEmail.textContent =
-        user.email || "";
-
-    if (user.avatar) {
-
-        profileImage.src = user.avatar;
+        hideLoader();
 
     }
 
 }
 
-/* ============================================================
+/* ================================
    DASHBOARD STATISTICS
-============================================================ */
+================================ */
+
 function loadStatistics() {
 
     if (!dashboardData) return;
+
+    const tasks = dashboardData.todayTasks || [];
+
+    const notes = dashboardData.notes || [];
 
     totalSubjects.textContent =
         dashboardData.totalSubjects || 0;
 
     todayTasks.textContent =
-        dashboardData.todayTasks.length || 0;
+        tasks.length;
 
     totalNotes.textContent =
-        dashboardData.totalNotes || 0;
+        dashboardData.totalNotes || notes.length;
 
     statsStudyHours.textContent =
-        `${dashboardData.studyTime} hrs`;
+        `${dashboardData.studyTime || 0} hrs`;
 
     statsStudyStreak.textContent =
         dashboardData.studyStreak || 0;
@@ -225,87 +245,62 @@ function loadStatistics() {
     flashcardCount.textContent =
         dashboardData.flashcardCount || 0;
 
-    quizScore.textContent =
-        `${dashboardData.quizScore || 0}%`;
+    if (achievementStudyHours) {
 
-    productivityScore.textContent =
-        `${dashboardData.productivityScore || 0}%`;
-
-    if (achievementStudyHours)
         achievementStudyHours.textContent =
-            `${dashboardData.achievements.totalStudyHours} hrs`;
+            `${dashboardData.studyTime || 0} hrs`;
 
-    if (achievementStudyStreak)
+    }
+
+    if (achievementStudyStreak) {
+
         achievementStudyStreak.textContent =
-            dashboardData.studyStreak;
+            dashboardData.studyStreak || 0;
 
-    if (completedSubjects)
+    }
+
+    if (completedSubjects) {
+
         completedSubjects.textContent =
-            dashboardData.totalSubjects;
+            dashboardData.totalSubjects || 0;
 
-    if (quizAccuracy)
+    }
+
+    if (quizAccuracy) {
+
         quizAccuracy.textContent =
-            `${dashboardData.quizScore}%`;
+            `${dashboardData.quizScore || 0}%`;
 
-    if (goalPercent)
-        goalPercent.textContent =
-            `${dashboardData.goalCompletion}%`;
-
-    if (goalHours)
-        goalHours.textContent =
-            `${dashboardData.studyTime} hrs`;
-
-    if (goalRemaining)
-        goalRemaining.textContent =
-            `${Math.max(
-                0,
-                8 - dashboardData.studyTime
-            ).toFixed(1)} hrs`;
-
-}
-/* ============================================================
-   DATE
-============================================================ */
-
-function updateCurrentDate() {
-
-    const options = {
-
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-
-    };
-
-    currentDate.textContent =
-        new Date().toLocaleDateString(
-            "en-US",
-            options
-        );
+    }
 
 }
 
-/* ============================================================
-   LOADER
-============================================================ */
+/* ================================
+   INITIALIZE
+================================ */
 
-function showLoader() {
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (loadingOverlay)
-        loadingOverlay.style.display = "flex";
+    updateCurrentDate();
 
-}
+    loadDashboard();
 
-function hideLoader() {
+});
 
-    if (loadingOverlay)
-        loadingOverlay.style.display = "none";
+/* ==========================================================
+   PART 2
+   PLANNER
+   CALENDAR
+   NOTES
+   SUBJECTS
+   GOAL PROGRESS
+==========================================================*/
 
-}
+/* ================================
+   TODAY'S PLANNER
+================================ */
+
 function loadPlanner() {
-
-    if (!dashboardData) return;
 
     const plannerContainer = document.getElementById("plannerList");
 
@@ -313,20 +308,30 @@ function loadPlanner() {
 
     plannerContainer.innerHTML = "";
 
-    if (!dashboardData.todayTasks || dashboardData.todayTasks.length === 0) {
+    const tasks = dashboardData.todayTasks || [];
+
+    if (tasks.length === 0) {
 
         plannerContainer.innerHTML = `
+
             <div class="empty-state">
-                No study tasks for today.
+
+                <i class="fa-solid fa-calendar-xmark"></i>
+
+                <p>No tasks scheduled today.</p>
+
             </div>
+
         `;
 
         return;
+
     }
 
-    dashboardData.todayTasks.forEach(task => {
+    tasks.forEach(task => {
 
         plannerContainer.innerHTML += `
+
             <div class="planner-card">
 
                 <h4>${task.title}</h4>
@@ -334,85 +339,172 @@ function loadPlanner() {
                 <p>${task.description || ""}</p>
 
                 <small>
-                    ${task.start_time} - ${task.end_time}
+
+                    ${task.study_date || ""}
+
+                    ${task.start_time || ""}
+
+                    -
+
+                    ${task.end_time || ""}
+
                 </small>
 
             </div>
+
         `;
 
     });
 
 }
 
-/* ============================================================
-   CALENDAR
-============================================================ */
-function loadCalendar() {
+/* ================================
+   CALENDAR EVENTS
+================================ */
 
-    if (!dashboardData) return;
+async function loadCalendar() {
 
-    const calendarContainer =
-        document.getElementById("calendarEvents");
+    const container = document.getElementById("todayEvents");
 
-    if (!calendarContainer) return;
+    if (!container) return;
 
-    calendarContainer.innerHTML = "";
+    container.innerHTML = "";
 
-    if (!dashboardData.upcoming.length) {
+    try {
 
-        calendarContainer.innerHTML =
-            "<p>No upcoming events.</p>";
+        const response = await fetch(
 
-        return;
+            `${API_URL}/calendar`,
+
+            {
+
+                headers: {
+
+                    Authorization: `Bearer ${token}`
+
+                }
+
+            }
+
+        );
+
+        const result = await response.json();
+
+        if (!result.success) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <p>No calendar events.</p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+        const events = result.events || [];
+
+        if (events.length === 0) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <p>No upcoming events.</p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+        events.slice(0,5).forEach(event => {
+
+            container.innerHTML += `
+
+                <div class="event-item">
+
+                    <div>
+
+                        <strong>${event.title}</strong>
+
+                        <p>${event.event_date}</p>
+
+                    </div>
+
+                    <span>
+
+                        ${event.start_time || ""}
+
+                    </span>
+
+                </div>
+
+            `;
+
+        });
 
     }
 
-    dashboardData.upcoming.forEach(event => {
+    catch (err) {
 
-        calendarContainer.innerHTML += `
+        console.error(err);
 
-            <div class="calendar-card">
+        container.innerHTML = `
 
-                <strong>${event.title}</strong>
+            <div class="empty-state">
 
-                <br>
-
-                ${event.event_date}
+                <p>Unable to load events.</p>
 
             </div>
 
         `;
 
-    });
+    }
 
 }
 
-/* ============================================================
+/* ================================
    RECENT NOTES
-============================================================ */
+================================ */
+
 function loadNotes() {
 
-    if (!dashboardData) return;
+    const container = document.getElementById("recentNotes");
 
-    const notesContainer =
-        document.getElementById("recentNotes");
+    if (!container) return;
 
-    if (!notesContainer) return;
+    container.innerHTML = "";
 
-    notesContainer.innerHTML = "";
+    const notes = dashboardData.notes || [];
 
-    if (!dashboardData.notes.length) {
+    if (notes.length === 0) {
 
-        notesContainer.innerHTML =
-            "<p>No notes found.</p>";
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <i class="fa-solid fa-note-sticky"></i>
+
+                <p>No Notes Found.</p>
+
+            </div>
+
+        `;
 
         return;
 
     }
 
-    dashboardData.notes.forEach(note => {
+    notes.slice(0,5).forEach(note => {
 
-        notesContainer.innerHTML += `
+        container.innerHTML += `
 
             <div class="note-card">
 
@@ -420,7 +512,7 @@ function loadNotes() {
 
                 <p>
 
-                    ${(note.content || "").substring(0,100)}
+                    ${(note.content || "").substring(0,120)}
 
                 </p>
 
@@ -432,27 +524,69 @@ function loadNotes() {
 
 }
 
-/* ============================================================
-   SUBJECTS
-============================================================ */
+/* ================================
+   SUBJECT PROGRESS
+================================ */
+
 function loadSubjects() {
 
-    if (!dashboardData) return;
+    const container = document.getElementById("subjectsContainer");
 
-    const subjectContainer =
-        document.getElementById("subjectProgress");
+    if (!container) return;
 
-    if (!subjectContainer) return;
+    container.innerHTML = "";
 
-    subjectContainer.innerHTML = "";
+    const subjects = dashboardData.subjects || [];
 
-    dashboardData.subjects.forEach(subject => {
+    if (subjects.length === 0) {
 
-        subjectContainer.innerHTML += `
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <p>No Subjects Added.</p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    subjects.forEach(subject => {
+
+        container.innerHTML += `
 
             <div class="subject-card">
 
-                <h4>${subject.name}</h4>
+                <div class="subject-top">
+
+                    <strong>
+
+                        ${subject.subject_name || subject.name}
+
+                    </strong>
+
+                    <span>
+
+                        ${subject.progress || 0}%
+
+                    </span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+
+                        class="progress-fill"
+
+                        style="width:${subject.progress || 0}%">
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -462,29 +596,420 @@ function loadSubjects() {
 
 }
 
-/* ============================================================
+/* ================================
    GOAL PROGRESS
-============================================================ */
+================================ */
+
 function updateGoalProgress() {
 
-    if (!dashboardData) return;
+    const percent = dashboardData.goalCompletion || 0;
 
-    const progressBar =
-        document.getElementById("goalProgressBar");
+    if (goalPercent)
 
-    if (progressBar) {
+        goalPercent.textContent = `${percent}%`;
 
-        progressBar.style.width =
-            `${dashboardData.goalCompletion}%`;
+    if (goalHours)
+
+        goalHours.textContent =
+
+            `${dashboardData.studyTime || 0} hrs`;
+
+    if (goalRemaining)
+
+        goalRemaining.textContent =
+
+            `${Math.max(0,8-(dashboardData.studyTime||0)).toFixed(1)} hrs`;
+
+    if (goalProgressCircle) {
+
+        const radius = 65;
+
+        const circumference =
+
+            2 * Math.PI * radius;
+
+        goalProgressCircle.style.strokeDasharray = circumference;
+
+        goalProgressCircle.style.strokeDashoffset =
+
+            circumference -
+
+            (percent / 100) * circumference;
 
     }
 
 }
-/* ============================================================
-   LOAD COMPLETE LEFT PANEL
-============================================================ */
 
-function initializeDashboardModules() {
+/* ==========================================================
+   PART 3
+   AI ASSISTANT
+   SUBJECT MODAL
+   SEARCH
+   THEME
+   LOGOUT
+==========================================================*/
+
+/* ================================
+   AI RECOMMENDATIONS
+================================ */
+
+function loadAIRecommendations() {
+
+    const container =
+        document.getElementById("aiRecommendations");
+
+    if (!container) return;
+
+    const tasks = dashboardData.todayTasks || [];
+
+    container.innerHTML = `
+
+        <div class="ai-card">
+
+            <h3>📚 Today's AI Suggestions</h3>
+
+            <ul>
+
+                <li>
+
+                    You have
+                    <strong>${tasks.length}</strong>
+                    task(s) today.
+
+                </li>
+
+                <li>
+
+                    Study Streak:
+                    <strong>${dashboardData.studyStreak || 0}</strong>
+                    days
+
+                </li>
+
+                <li>
+
+                    Total Subjects:
+                    <strong>${dashboardData.totalSubjects || 0}</strong>
+
+                </li>
+
+                <li>
+
+                    Flashcards:
+                    <strong>${dashboardData.flashcardCount || 0}</strong>
+
+                </li>
+
+                <li>
+
+                    Keep your study streak alive today 🚀
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    `;
+
+}
+
+/* ================================
+   REFRESH AI
+================================ */
+
+const refreshAI =
+document.getElementById("refreshAI");
+
+if(refreshAI){
+
+    refreshAI.addEventListener("click",()=>{
+
+        loadAIRecommendations();
+
+    });
+
+}
+
+/* ================================
+   SUBJECT MODAL
+================================ */
+
+const addSubjectBtn =
+document.getElementById("addSubjectBtn");
+
+const subjectModal =
+document.getElementById("subjectModal");
+
+const closeModal =
+document.getElementById("closeModal");
+
+if(addSubjectBtn){
+
+    addSubjectBtn.onclick=()=>{
+
+        subjectModal.style.display="flex";
+
+    }
+
+}
+
+if(closeModal){
+
+    closeModal.onclick=()=>{
+
+        subjectModal.style.display="none";
+
+    }
+
+}
+
+window.onclick=(e)=>{
+
+    if(e.target===subjectModal){
+
+        subjectModal.style.display="none";
+
+    }
+
+}
+
+/* ================================
+   SAVE SUBJECT
+================================ */
+
+const subjectForm =
+document.getElementById("subjectForm");
+
+if(subjectForm){
+
+subjectForm.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const subject_name=
+document.getElementById("subjectName").value;
+
+const progress=
+document.getElementById("subjectProgress").value;
+
+const color=
+document.getElementById("subjectColor").value;
+
+try{
+
+const response=await fetch(
+
+`${API_URL}/subjects`,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json",
+
+Authorization:`Bearer ${token}`
+
+},
+
+body:JSON.stringify({
+
+subject_name,
+
+progress,
+
+color
+
+})
+
+}
+
+);
+
+const result=await response.json();
+
+if(result.success){
+
+alert("Subject Added Successfully");
+
+subjectModal.style.display="none";
+
+subjectForm.reset();
+
+loadDashboard();
+
+}else{
+
+alert(result.message);
+
+}
+
+}catch(err){
+
+console.error(err);
+
+alert("Unable to add subject.");
+
+}
+
+});
+
+}
+
+/* ================================
+   SEARCH
+================================ */
+
+const searchInput =
+document.getElementById("searchInput");
+
+if(searchInput){
+
+searchInput.addEventListener("keyup",function(){
+
+const value=this.value.toLowerCase();
+
+document.querySelectorAll(".dashboard-card")
+
+.forEach(card=>{
+
+const text=
+
+card.innerText.toLowerCase();
+
+card.style.display=
+
+text.includes(value)
+
+?
+
+""
+
+:
+
+"none";
+
+});
+
+});
+
+}
+
+/* ================================
+   DARK MODE
+================================ */
+
+const themeToggle=
+document.getElementById("themeToggle");
+
+if(themeToggle){
+
+themeToggle.onclick=()=>{
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+
+"theme",
+
+document.body.classList.contains("dark")
+
+?
+
+"dark"
+
+:
+
+"light"
+
+);
+
+}
+
+}
+
+window.addEventListener("load",()=>{
+
+if(localStorage.getItem("theme")==="dark"){
+
+document.body.classList.add("dark");
+
+}
+
+});
+
+/* ================================
+   LOGOUT
+================================ */
+
+const logoutBtn=
+document.getElementById("logoutBtn");
+
+if(logoutBtn){
+
+logoutBtn.onclick=()=>{
+
+localStorage.removeItem("token");
+
+localStorage.removeItem("user");
+
+window.location.href="../pages/login.html";
+
+}
+
+}
+
+/* ================================
+   NOTIFICATIONS
+================================ */
+
+const notificationBtn=
+document.getElementById("notificationBtn");
+
+const notificationPanel=
+document.getElementById("notificationPanel");
+
+const closeNotifications=
+document.getElementById("closeNotifications");
+
+if(notificationBtn){
+
+notificationBtn.onclick=()=>{
+
+notificationPanel.classList.toggle("show");
+
+}
+
+}
+
+if(closeNotifications){
+
+closeNotifications.onclick=()=>{
+
+notificationPanel.classList.remove("show");
+
+}
+
+}
+
+/* ==========================================================
+   PART 4
+   FINAL INITIALIZATION
+==========================================================*/
+
+/* ================================
+   INITIALIZE ALL MODULES
+================================ */
+
+function initializeDashboard() {
+
+    updateCurrentDate();
+
+    loadUser();
+
+    loadStatistics();
 
     loadPlanner();
 
@@ -496,464 +1021,177 @@ function initializeDashboardModules() {
 
     updateGoalProgress();
 
-}
-
-/* ============================================================
-   WEEKLY ANALYTICS (Chart.js)
-============================================================ */
-function loadAnalytics() {
-
-    if (!dashboardData) return;
-
-    console.log("Weekly Hours");
-
-    console.log(
-        dashboardData.weeklyStudyHours
-    );
-
-}
-
-/* ============================================================
-   AI RECOMMENDATIONS
-============================================================ */
-function loadAIRecommendations() {
-
-    if (!dashboardData) return;
-
-    const aiBox =
-        document.getElementById("aiRecommendations");
-
-    if (!aiBox) return;
-
-    aiBox.innerHTML = `
-
-        <ul>
-
-            <li>
-                You have
-                ${dashboardData.todayTasks.length}
-                tasks today.
-            </li>
-
-            <li>
-                Study streak:
-                ${dashboardData.studyStreak}
-                days
-            </li>
-
-            <li>
-                Quiz accuracy:
-                ${dashboardData.quizScore}%
-            </li>
-
-            <li>
-                Productivity:
-                ${dashboardData.productivityScore}%
-            </li>
-
-        </ul>
-
-    `;
-
-}
-/* ============================================================
-   RECENT ACTIVITY
-============================================================ */
-
-function loadRecentActivity() {
-
-    if (!recentActivity) return;
-
-    recentActivity.innerHTML = "";
-
-    const activities =
-        dashboardData.recentActivity || [];
-
-    if (activities.length === 0) {
-
-        recentActivity.innerHTML = `
-
-            <div class="empty-state">
-
-                <i class="fa-solid fa-clock-rotate-left"></i>
-
-                <p>No recent activity.</p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    activities.forEach(activity => {
-
-        recentActivity.innerHTML += `
-
-            <div class="activity-item">
-
-                <i class="fa-solid fa-check-circle"></i>
-
-                <div>
-
-                    <strong>
-
-                        ${activity.title}
-
-                    </strong>
-
-                    <p>
-
-                        ${activity.date || ""}
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-}
-
-/* ============================================================
-   THEME TOGGLE
-============================================================ */
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
-if (themeToggle) {
-
-    themeToggle.addEventListener("click", () => {
-
-        document.body.classList.toggle("dark");
-
-        localStorage.setItem(
-
-            "theme",
-
-            document.body.classList.contains("dark")
-                ? "dark"
-                : "light"
-
-        );
-
-    });
-
-}
-
-window.addEventListener("load", () => {
-
-    if (localStorage.getItem("theme") === "dark") {
-
-        document.body.classList.add("dark");
-
-    }
-
-});
-
-/* ============================================================
-   SEARCH
-============================================================ */
-
-const searchInput =
-    document.getElementById("searchInput");
-
-if (searchInput) {
-
-    searchInput.addEventListener("keyup", function () {
-
-        const value =
-            this.value.toLowerCase();
-
-        document.querySelectorAll(".dashboard-card").forEach(card => {
-
-            const text =
-                card.innerText.toLowerCase();
-
-            card.style.display =
-                text.includes(value)
-                    ? ""
-                    : "none";
-
-        });
-
-    });
-
-}
-
-/* ============================================================
-   LOGOUT
-============================================================ */
-
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
-if (logoutBtn) {
-
-    logoutBtn.addEventListener("click", () => {
-
-        localStorage.removeItem("token");
-
-        localStorage.removeItem("user");
-
-        window.location.href =
-            "../pages/login.html";
-
-    });
-
-}
-
-/* ============================================================
-   EVENT LISTENERS
-============================================================ */
-
-const refreshAI =
-    document.getElementById("refreshAI");
-
-if (refreshAI) {
-
-    refreshAI.addEventListener(
-
-        "click",
-
-        loadAIRecommendations
-
-    );
-
-}
-
-/* ============================================================
-   FINAL INITIALIZATION
-============================================================ */
-
-function initializeDashboard() {
-
-    loadAnalytics();
-
     loadAIRecommendations();
 
-    loadRecentActivity();
-
 }
 
-/* ============================================================
-   UPDATE loadDashboard()
-============================================================ */
+/* ================================
+   SAFE LOADER
+================================ */
 
-/*
-At the end of loadDashboard(), after:
-
-loadUser();
-loadStatistics();
-initializeDashboardModules();
-
-add ONE MORE LINE:
-
-initializeDashboard();
-
-Final order:
-
-loadUser();
-loadStatistics();
-initializeDashboardModules();
-initializeDashboard();
-*/
-/* =========================================
-   SUBJECT MODAL
-========================================= */
-
-const addSubjectBtn = document.getElementById("addSubjectBtn");
-const subjectModal = document.getElementById("subjectModal");
-const closeModal = document.getElementById("closeModal");
-
-if (addSubjectBtn) {
-
-    addSubjectBtn.addEventListener("click", () => {
-
-        subjectModal.style.display = "flex";
-
-    });
-
-}
-
-if (closeModal) {
-
-    closeModal.addEventListener("click", () => {
-
-        subjectModal.style.display = "none";
-
-    });
-
-}
-
-window.addEventListener("click", (e) => {
-
-    if (e.target === subjectModal) {
-
-        subjectModal.style.display = "none";
-
-    }
-
-});
-
-const subjectForm = document.getElementById("subjectForm");
-
-if (subjectForm) {
-
-    subjectForm.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-
-        const subject_name =
-            document.getElementById("subjectName").value;
-
-        const progress =
-            document.getElementById("subjectProgress").value;
-
-        const color =
-            document.getElementById("subjectColor").value;
-
-        try {
-
-            const response = await fetch(`${API_URL}/subjects`, {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type": "application/json",
-
-                    Authorization: `Bearer ${token}`
-
-                },
-
-                body: JSON.stringify({
-
-                    subject_name,
-
-                    progress,
-
-                    color
-
-                })
-
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-
-                alert("Subject Added Successfully");
-
-                subjectModal.style.display = "none";
-
-                subjectForm.reset();
-
-                loadDashboard();
-
-            } else {
-
-                alert(result.message);
-
-            }
-
-        } catch (err) {
-
-            console.error(err);
-
-            alert("Unable to add subject.");
-
-        }
-
-    });
-
-}
-
-async function loadCalendar() {
-
-    if (!eventList) return;
+async function startDashboard() {
 
     try {
 
-        const response = await fetch(`${API_URL}/calendar`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        showLoader();
 
-        const data = await response.json();
-
-        if (!data.success) {
-
-            eventList.innerHTML = `
-                <div class="empty-state">
-                    <p>Unable to load events.</p>
-                </div>
-            `;
-
-            return;
-        }
-
-        eventList.innerHTML = "";
-
-        const today = new Date();
-
-        const upcomingEvents = data.events
-            .filter(event => new Date(event.event_date) >= today)
-            .sort((a,b)=>new Date(a.event_date)-new Date(b.event_date))
-            .slice(0,5);
-
-        if(upcomingEvents.length===0){
-
-            eventList.innerHTML=`
-                <div class="empty-state">
-                    <i class="fa-solid fa-calendar-xmark"></i>
-                    <p>No upcoming events.</p>
-                </div>
-            `;
-
-            return;
-        }
-
-        upcomingEvents.forEach(event=>{
-
-            eventList.innerHTML+=`
-
-            <div class="event-item">
-
-                <div>
-
-                    <strong>${event.title}</strong>
-
-                    <span>${event.event_date}</span>
-
-                </div>
-
-                <span>
-
-                    ${event.start_time}
-
-                </span>
-
-            </div>
-
-            `;
-
-        });
+        await loadDashboard();
 
     }
 
-    catch(error){
+    catch (err) {
 
-        console.error(error);
+        console.error(err);
+
+    }
+
+    finally {
+
+        hideLoader();
 
     }
 
 }
 
- loadNotes();
+/* ================================
+   AUTO REFRESH
+================================ */
+
+setInterval(() => {
+
+    loadStatistics();
+
+    loadPlanner();
+
+    loadCalendar();
+
+    loadNotes();
+
+    loadSubjects();
+
+    updateGoalProgress();
+
+}, 60000);
+
+/* ================================
+   WINDOW LOAD
+================================ */
+
+window.addEventListener("DOMContentLoaded", async () => {
+
+    await startDashboard();
+
+});
+
+/* ================================
+   WINDOW FOCUS
+================================ */
+
+window.addEventListener("focus", () => {
+
+    loadDashboard();
+
+});
+
+/* ================================
+   CONNECTION CHECK
+================================ */
+
+window.addEventListener("offline", () => {
+
+    alert("Internet connection lost.");
+
+});
+
+window.addEventListener("online", () => {
+
+    loadDashboard();
+
+});
+
+/* ================================
+   ESC CLOSE MODAL
+================================ */
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        if (subjectModal) {
+
+            subjectModal.style.display = "none";
+
+        }
+
+        if (notificationPanel) {
+
+            notificationPanel.classList.remove("show");
+
+        }
+
+    }
+
+});
+
+/* ================================
+   IMAGE FALLBACK
+================================ */
+
+if (profileImage) {
+
+    profileImage.onerror = () => {
+
+        profileImage.src =
+            "../assets/images/default-avatar.png";
+
+    };
+
+}
+
+/* ================================
+   GLOBAL ERROR HANDLER
+================================ */
+
+window.onerror = function (
+
+    message,
+
+    source,
+
+    line,
+
+    column,
+
+    error
+
+) {
+
+    console.error(
+
+        "Dashboard Error:",
+
+        message,
+
+        source,
+
+        line,
+
+        column,
+
+        error
+
+    );
+
+};
+
+/* ================================
+   DASHBOARD READY
+================================ */
+
+console.log(
+
+    "%c AI Study Planner Dashboard Loaded",
+
+    "color:#4F46E5;font-size:16px;font-weight:bold"
+
+);
